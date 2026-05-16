@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - CRM TechSolutions</title>
+    <title>Catálogo de Productos | DecoHOME CRM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+<body class="bg-gradient-to-br from-stone-50 via-stone-100 to-orange-50/30 text-stone-800 antialiased min-h-screen">
     <div class="min-h-screen">
-        <nav class="bg-slate-950 border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+        <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-boxes-stacked text-white"></i>
+                        <div class="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <i class="fas fa-chair text-white"></i>
                         </div>
-                        <h1 class="text-2xl font-bold text-white">TechSolutions CRM</h1>
+                        <h1 class="text-2xl font-bold text-stone-900">Deco<span class="text-amber-700 font-light">HOME</span></h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="/" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                        <a href="/" class="text-stone-600 hover:text-amber-700 transition px-3 py-2 rounded-lg hover:bg-stone-100 font-medium text-sm">
                             <i class="fas fa-home mr-2"></i>Inicio
                         </a>
                     </div>
@@ -31,76 +31,78 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="mb-8 flex items-center justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold text-white mb-2">Catálogo de Productos</h2>
-                    <p class="text-slate-400">Gestiona tu inventario y servicios</p>
+                    <h2 class="text-3xl font-bold text-stone-900 mb-1">Catálogo de Productos</h2>
+                    <p class="text-stone-500 text-sm">Gestiona el inventario de mobiliario, iluminación, textiles y colecciones de temporada</p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="/dashboard" class="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-600 transition">Regresar</a>
-                    <button id="btnNewProduct" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg shadow-indigo-500/20">
-                        <i class="fas fa-plus mr-2"></i>Nuevo Producto
+                <div class="flex items-center gap-3">
+                    <a href="/dashboard" class="bg-white border border-stone-200 text-stone-700 px-4 py-2.5 rounded-xl hover:bg-stone-50 shadow-sm font-semibold transition text-sm">Regresar</a>
+                    <button id="btnNewProduct" class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition text-sm flex items-center">
+                        <i class="fas fa-plus mr-2 text-xs"></i>Nuevo Producto
                     </button>
                 </div>
             </div>
 
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 mb-8 shadow-xl">
+            <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-sm mb-8">
                 <div class="flex flex-wrap gap-4">
                     <div class="flex-1 min-w-[300px] relative">
-                        <i class="fas fa-search absolute left-3 top-3 text-slate-500"></i>
-                        <input type="text" id="searchProduct" placeholder="Buscar por nombre, SKU o descripción..." 
-                               class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:border-blue-500 transition">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-stone-400">
+                            <i class="fas fa-search text-sm"></i>
+                        </span>
+                        <input type="text" id="searchProduct" placeholder="Buscar por artículo, acabado, SKU o descripción..." 
+                               class="w-full bg-stone-50 border border-stone-200 text-stone-900 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
                     </div>
-                    <select id="categoryFilter" class="bg-slate-900 border border-slate-700 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 transition min-w-[200px]">
-                        <option value="">Todas las categorías</option>
+                    <select id="categoryFilter" class="bg-stone-50 border border-stone-200 text-stone-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition min-w-[200px]">
+                        <option value="">Todas las colecciones</option>
                     </select>
                 </div>
             </div>
 
             <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="col-span-full text-center text-slate-400 py-12">
-                    <i class="fas fa-circle-notch fa-spin text-3xl mb-4 text-blue-500"></i>
-                    <p>Sincronizando inventario...</p>
+                <div class="col-span-full text-center text-stone-400 py-12">
+                    <i class="fas fa-circle-notch fa-spin text-3xl mb-4 text-amber-600"></i>
+                    <p class="text-sm font-medium">Sincronizando inventario de DecoHOME...</p>
                 </div>
             </div>
         </main>
     </div>
 
-    <div id="productModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center hidden z-[100]">
-        <div class="bg-slate-900 rounded-2xl w-full max-w-2xl p-8 border border-slate-700 shadow-2xl mx-4">
-            <div class="flex items-center justify-between mb-6">
-                <h3 id="productModalTitle" class="text-xl font-bold text-white">Nuevo Producto</h3>
-                <button id="productModalClose" class="text-slate-400 hover:text-white text-2xl transition">✕</button>
+    <div id="productModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center hidden z-[100]">
+        <div class="bg-white rounded-2xl w-full max-w-2xl p-8 border border-stone-200 shadow-2xl mx-4 transform transition-all">
+            <div class="flex items-center justify-between mb-6 border-b border-stone-100 pb-4">
+                <h3 id="productModalTitle" class="text-xl font-bold text-stone-900">Nuevo Producto</h3>
+                <button id="productModalClose" class="text-stone-400 hover:text-stone-600 text-xl transition">✕</button>
             </div>
-            <form id="productForm" class="space-y-5">
+            <form id="productForm" class="space-y-4">
                 <input type="hidden" id="productId">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="md:col-span-1">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Nombre</label>
-                        <input id="productName" required class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded-lg text-white focus:border-blue-500 outline-none" />
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Nombre de la Pieza</label>
+                        <input id="productName" required placeholder="Ej: Sofá Lino Praga 3 Plazas" class="w-full bg-stone-50 border border-stone-200 p-2.5 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition" />
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">SKU / Código</label>
-                        <input id="productSKU" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded-lg text-white focus:border-blue-500 outline-none" />
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">SKU / Referencia</label>
+                        <input id="productSKU" placeholder="Ej: CH-7492-M" class="w-full bg-stone-50 border border-stone-200 p-2.5 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition" />
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Descripción</label>
-                        <textarea id="productDescription" rows="2" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded-lg text-white focus:border-blue-500 outline-none resize-none"></textarea>
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Materiales y Descripción Corta</label>
+                        <textarea id="productDescription" rows="2" placeholder="Detalles de acabado, maderas, dimensiones o tejidos..." class="w-full bg-stone-50 border border-stone-200 p-2.5 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition resize-none"></textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Precio (€)</label>
-                        <input id="productPrice" type="number" step="0.01" required class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded-lg text-white focus:border-blue-500 outline-none" />
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Precio de Venta (€)</label>
+                        <input id="productPrice" type="number" step="0.01" required class="w-full bg-stone-50 border border-stone-200 p-2.5 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition" />
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Stock Disponible</label>
-                        <input id="productStock" type="number" required class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded-lg text-white focus:border-blue-500 outline-none" />
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Existencias en Almacén</label>
+                        <input id="productStock" type="number" required class="w-full bg-stone-50 border border-stone-200 p-2.5 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition" />
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 ml-1">Categoría</label>
-                        <select id="productCategory" required class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded-lg text-white focus:border-blue-500 outline-none">
-                            </select>
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">Colección / Categoría</label>
+                        <select id="productCategory" required class="w-full bg-stone-50 border border-stone-200 p-2.5 rounded-xl text-stone-700 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
+                        </select>
                     </div>
                 </div>
-                <div class="flex justify-end pt-4">
-                    <button type="submit" id="productSubmit" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-3 rounded-lg text-white font-bold transition shadow-lg shadow-indigo-500/20">Crear</button>
+                <div class="flex justify-end pt-4 border-t border-stone-100 mt-6">
+                    <button type="submit" id="productSubmit" class="bg-amber-700 hover:bg-amber-800 px-8 py-3 rounded-xl text-white font-bold shadow-sm transition text-sm">Crear</button>
                 </div>
             </form>
         </div>
@@ -108,7 +110,7 @@
 
     <script>
         const API_BASE = '/api';
-        let allProducts = []; // Cache local para filtrado rápido
+        let allProducts = [];
 
         document.addEventListener('DOMContentLoaded', () => {
             init();
@@ -152,39 +154,39 @@
         function displayProducts(products) {
             const grid = document.getElementById('productsGrid');
             if (products.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center text-slate-500 py-12">No se encontraron productos</div>';
+                grid.innerHTML = '<div class="col-span-full text-center text-stone-400 py-12 text-sm font-medium">No se encontraron artículos en esta selección</div>';
                 return;
             }
             
             grid.innerHTML = products.map(p => `
-                <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden hover:border-indigo-500/50 transition-all duration-300 group shadow-lg">
-                    <div class="bg-gradient-to-br from-indigo-600/20 to-purple-600/20 h-24 flex items-center justify-center border-b border-slate-700">
-                        <i class="fas fa-box text-indigo-400 text-3xl group-hover:scale-110 transition-transform"></i>
+                <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden hover:border-amber-600/40 hover:shadow-md transition-all duration-300 group shadow-sm flex flex-col">
+                    <div class="bg-gradient-to-br from-stone-100 to-amber-50/50 h-32 flex items-center justify-center border-b border-stone-100 relative">
+                        <i class="fas fa-couch text-stone-400 text-3xl group-hover:scale-105 transition-transform duration-300"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold text-white leading-tight">${p.name}</h3>
-                            <span class="text-[10px] bg-slate-900 text-slate-400 px-2 py-1 rounded border border-slate-700 font-mono">${p.sku || 'N/A'}</span>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h3 class="text-base font-bold text-stone-900 leading-tight group-hover:text-amber-800 transition-colors">${p.name}</h3>
+                            <span class="text-[10px] bg-stone-50 text-stone-400 px-2 py-0.5 rounded-md border border-stone-200 font-mono shrink-0">${p.sku || 'N/A'}</span>
                         </div>
-                        <p class="text-slate-400 text-xs mb-4 line-clamp-2 h-8">${p.description || 'Sin descripción detallada'}</p>
+                        <p class="text-stone-500 text-xs mb-4 line-clamp-2 h-8 leading-relaxed">${p.description || 'Sin especificaciones añadidas'}</p>
                         
-                        <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-xl mb-5">
+                        <div class="flex items-center justify-between p-3 bg-stone-50 rounded-xl mb-4 mt-auto">
                             <div>
-                                <span class="block text-[10px] text-slate-500 uppercase font-bold">Precio</span>
-                                <span class="text-xl font-black text-green-400">€${parseFloat(p.price).toFixed(2)}</span>
+                                <span class="block text-[9px] text-stone-400 uppercase font-bold tracking-wider">Tarifa</span>
+                                <span class="text-lg font-bold text-stone-900">€${parseFloat(p.price).toFixed(2)}</span>
                             </div>
                             <div class="text-right">
-                                <span class="block text-[10px] text-slate-500 uppercase font-bold">Stock</span>
-                                <span class="text-sm font-bold ${p.stock > 0 ? 'text-blue-400' : 'text-red-400'}">${p.stock} uds</span>
+                                <span class="block text-[9px] text-stone-400 uppercase font-bold tracking-wider">Disponibilidad</span>
+                                <span class="text-xs font-semibold ${p.stock > 0 ? 'text-emerald-700' : 'text-rose-700'}">${p.stock} unidades</span>
                             </div>
                         </div>
 
-                        <div class="flex gap-2">
-                            <button onclick="openProductForm('edit', ${p.id})" class="flex-1 bg-slate-700 hover:bg-indigo-600 text-white py-2 rounded-lg transition text-sm font-semibold">
-                                <i class="fas fa-pen-to-square mr-2"></i>Editar
+                        <div class="flex gap-2 border-t border-stone-100 pt-3">
+                            <button onclick="openProductForm('edit', ${p.id})" class="flex-1 bg-stone-100 hover:bg-amber-700 hover:text-white text-stone-700 py-2 rounded-xl transition text-xs font-bold flex items-center justify-center gap-1.5">
+                                <i class="fas fa-edit text-xs"></i>Editar
                             </button>
-                            <button onclick="deleteProduct(${p.id})" class="w-10 bg-slate-700 hover:bg-red-600 text-white py-2 rounded-lg transition">
-                                <i class="fas fa-trash"></i>
+                            <button onclick="deleteProduct(${p.id})" class="w-9 bg-stone-50 border border-stone-200 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200 text-stone-400 py-2 rounded-xl transition flex items-center justify-center">
+                                <i class="fas fa-trash text-xs"></i>
                             </button>
                         </div>
                     </div>
@@ -263,14 +265,14 @@
         };
 
         async function deleteProduct(id) {
-            if (confirm('¿Deseas eliminar este producto del inventario?')) {
+            if (confirm('¿Deseas eliminar este producto del inventario de forma permanente?')) {
                 await fetch(`${API_BASE}/products/${id}`, { method: 'DELETE' });
                 loadProducts();
             }
         }
 
         function showError(message) {
-            document.getElementById('productsGrid').innerHTML = `<div class="col-span-full text-center text-red-400 py-12">❌ ${message}</div>`;
+            document.getElementById('productsGrid').innerHTML = `<div class="col-span-full text-center text-rose-700 font-medium py-12">❌ ${message}</div>`;
         }
     </script>
 </body>

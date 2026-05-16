@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedidos - CRM TechSolutions</title>
+    <title>Pedidos | DecoHOME CRM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+<body class="bg-gradient-to-br from-stone-50 via-stone-100 to-orange-50/30 text-stone-800 antialiased min-h-screen">
     <div class="min-h-screen">
-        <nav class="bg-slate-950 border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+        <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-file-invoice-dollar text-white"></i>
+                        <div class="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <i class="fas fa-chair text-white"></i>
                         </div>
-                        <h1 class="text-2xl font-bold text-white">TechSolutions CRM</h1>
+                        <h1 class="text-2xl font-bold text-stone-900">Deco<span class="text-amber-700 font-light">HOME</span></h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="/" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                        <a href="/" class="text-stone-600 hover:text-amber-700 transition px-3 py-2 rounded-lg hover:bg-stone-100 font-medium text-sm">
                             <i class="fas fa-home mr-2"></i>Inicio
                         </a>
                     </div>
@@ -31,22 +31,22 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="mb-8 flex items-center justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold text-white mb-2">Gestión de Pedidos</h2>
-                    <p class="text-slate-400">Administración de ventas y facturación</p>
+                    <h2 class="text-3xl font-bold text-stone-900 mb-1">Gestión de Pedidos</h2>
+                    <p class="text-stone-500 text-sm">Administración de budgets, órdenes de mobiliario y facturación corporativa</p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="/dashboard" class="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-600 transition">Regresar</a>
-                    <button id="btnNewOrder" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg shadow-orange-500/20">
-                        <i class="fas fa-plus mr-2"></i>Nuevo Pedido
+                <div class="flex items-center gap-3">
+                    <a href="/dashboard" class="bg-white border border-stone-200 text-stone-700 px-4 py-2.5 rounded-xl hover:bg-stone-50 shadow-sm font-semibold transition text-sm">Regresar</a>
+                    <button id="btnNewOrder" class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition text-sm flex items-center">
+                        <i class="fas fa-plus mr-2 text-xs"></i>Nuevo Pedido
                     </button>
                 </div>
             </div>
 
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 mb-8 shadow-xl">
+            <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-sm mb-8">
                 <div class="flex flex-wrap gap-4">
                     <div class="flex-1 min-w-[200px]">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Estado del Pedido</label>
-                        <select id="statusFilter" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-4 py-2.5 focus:border-orange-500 outline-none transition">
+                        <label class="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-2">Filtrar por Estado</label>
+                        <select id="statusFilter" class="w-full bg-stone-50 border border-stone-200 text-stone-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
                             <option value="">Todos los estados</option>
                             <option value="pendiente">Pendiente</option>
                             <option value="confirmado">Confirmado</option>
@@ -58,21 +58,21 @@
                 </div>
             </div>
 
-            <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-2xl">
+            <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-slate-300">
-                        <thead class="bg-slate-950 border-b border-slate-700">
+                    <table class="w-full text-sm text-stone-600">
+                        <thead class="bg-stone-50 text-stone-500 uppercase text-xs tracking-wider border-b border-stone-200">
                             <tr>
-                                <th class="px-6 py-4 text-left text-white font-bold uppercase tracking-wider">Nº Pedido</th>
-                                <th class="px-6 py-4 text-left text-white font-bold uppercase tracking-wider">Cliente</th>
-                                <th class="px-6 py-4 text-left text-white font-bold uppercase tracking-wider">Fecha</th>
-                                <th class="px-6 py-4 text-left text-white font-bold uppercase tracking-wider">Total</th>
-                                <th class="px-6 py-4 text-left text-white font-bold uppercase tracking-wider">Estado</th>
-                                <th class="px-6 py-4 text-center text-white font-bold uppercase tracking-wider">Acciones</th>
+                                <th class="px-6 py-4 text-left font-bold">Nº Pedido</th>
+                                <th class="px-6 py-4 text-left font-bold">Cliente / Estudio</th>
+                                <th class="px-6 py-4 text-left font-bold">Fecha de Emisión</th>
+                                <th class="px-6 py-4 text-left font-bold">Total Facturado</th>
+                                <th class="px-6 py-4 text-left font-bold">Estado</th>
+                                <th class="px-6 py-4 text-center font-bold">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="ordersTableBody">
-                            <tr><td colspan="6" class="px-6 py-12 text-center text-slate-500">Cargando pedidos...</td></tr>
+                        <tbody id="ordersTableBody" class="divide-y divide-stone-100">
+                            <tr><td colspan="6" class="px-6 py-12 text-center text-stone-400">Cargando bitácora de pedidos...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -80,47 +80,47 @@
         </main>
     </div>
 
-    <div id="orderModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center hidden z-[100]">
-        <div class="bg-slate-900 rounded-2xl w-full max-w-4xl p-8 border border-slate-700 shadow-2xl mx-4 overflow-y-auto max-h-[90vh]">
-            <div class="flex items-center justify-between mb-6">
-                <h3 id="orderModalTitle" class="text-xl font-bold text-white">Nuevo Pedido</h3>
-                <button id="orderModalClose" class="text-slate-400 hover:text-white text-2xl">✕</button>
+    <div id="orderModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center hidden z-[100]">
+        <div class="bg-white rounded-2xl w-full max-w-4xl p-8 border border-stone-200 shadow-2xl mx-4 overflow-y-auto max-h-[90vh] transform transition-all">
+            <div class="flex items-center justify-between mb-6 border-b border-stone-100 pb-4">
+                <h3 id="orderModalTitle" class="text-xl font-bold text-stone-900">Nuevo Pedido</h3>
+                <button id="orderModalClose" class="text-stone-400 hover:text-stone-600 text-xl transition">✕</button>
             </div>
             
             <form id="orderForm" class="space-y-6">
                 <input type="hidden" id="orderId">
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <div class="md:col-span-1">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-2">ID de Pedido (Único)</label>
-                        <input id="orderNumber" required placeholder="PED-001" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-white focus:border-orange-500 outline-none transition" />
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Código de Pedido (Único)</label>
+                        <input id="orderNumber" required placeholder="PED-001" class="w-full bg-stone-50 border border-stone-200 p-3 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition" />
                     </div>
                     <div class="md:col-span-1">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Cliente</label>
-                        <select id="orderClient" required class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-white focus:border-orange-500 outline-none transition"></select>
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Asignar Cliente</label>
+                        <select id="orderClient" required class="w-full bg-stone-50 border border-stone-200 p-3 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition"></select>
                     </div>
                     <div class="md:col-span-1">
-                        <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Método de Pago</label>
-                        <select id="orderPayment" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-white focus:border-orange-500 outline-none transition">
-                            <option value="transferencia">Transferencia</option>
-                            <option value="tarjeta">Tarjeta</option>
-                            <option value="efectivo">Efectivo</option>
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Modalidad de Pago</label>
+                        <select id="orderPayment" class="w-full bg-stone-50 border border-stone-200 p-3 rounded-xl text-stone-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
+                            <option value="transferencia">Transferencia Bancaria</option>
+                            <option value="tarjeta">Pasarela de Tarjeta</option>
+                            <option value="efectivo">Efectivo / Certificado</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="border-t border-slate-800 pt-6">
+                <div class="border-t border-stone-100 pt-6">
                     <div class="flex justify-between items-center mb-4">
-                        <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Productos en el pedido</h4>
-                        <button type="button" onclick="addOrderItemRow()" class="bg-blue-600/20 text-blue-400 border border-blue-500/30 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition text-xs font-bold">
-                            <i class="fas fa-plus mr-2"></i>Añadir Línea
+                        <h4 class="text-xs font-bold text-stone-400 uppercase tracking-wider">Artículos e Inventario Seleccionado</h4>
+                        <button type="button" onclick="addOrderItemRow()" class="bg-amber-50 text-amber-800 border border-amber-200/60 px-4 py-2 rounded-xl hover:bg-amber-100 transition text-xs font-bold flex items-center">
+                            <i class="fas fa-plus mr-2"></i>Añadir Artículo
                         </button>
                     </div>
                     <div id="orderItems" class="space-y-3"></div>
                 </div>
 
-                <div class="flex justify-end pt-4 border-t border-slate-800">
-                    <button type="submit" id="orderSubmit" class="bg-orange-600 hover:bg-orange-700 px-10 py-3 rounded-xl text-white font-bold transition shadow-lg shadow-orange-500/20">
+                <div class="flex justify-end pt-5 border-t border-stone-100 mt-6">
+                    <button type="submit" id="orderSubmit" class="bg-amber-700 hover:bg-amber-800 px-8 py-3 rounded-xl text-white font-bold shadow-sm transition text-sm">
                         Guardar Pedido
                     </button>
                 </div>
@@ -128,136 +128,217 @@
         </div>
     </div>
 
-    <script>
-        const API_BASE = '/api';
-        let allOrders = [];
-        let productsCache = [];
+   <script>
+    const API_BASE = '/api';
+    let allOrders = [];
+    let productsCache = [];
 
-        document.addEventListener('DOMContentLoaded', () => {
-            init();
-            document.getElementById('statusFilter').addEventListener('change', filterOrders);
-            document.getElementById('btnNewOrder').addEventListener('click', () => openOrderForm('create'));
-            document.getElementById('orderModalClose').addEventListener('click', () => document.getElementById('orderModal').classList.add('hidden'));
-        });
+    // 1. Añadir fila dinámicamente con clase identificadora precisa
+    function addOrderItemRow() {
+        const container = document.getElementById('orderItems');
+        if (!container) return;
 
-        async function init() {
-            await loadOrders();
-            try {
-                const [clientsRes, productsRes] = await Promise.all([
-                    fetch(`${API_BASE}/clients/`).then(r => r.json()),
-                    fetch(`${API_BASE}/products/`).then(r => r.json())
-                ]);
-                const clientSel = document.getElementById('orderClient');
-                (clientsRes.clients || clientsRes).forEach(c => {
+        const rowId = Date.now();
+        const rowHtml = `
+            <div id="row-${rowId}" class="order-item-row grid grid-cols-1 md:grid-cols-12 gap-3 bg-stone-50 p-4 rounded-xl border border-stone-200 items-end">
+                <div class="md:col-span-6">
+                    <label class="block text-[10px] text-stone-400 uppercase mb-1 font-bold tracking-wider">Línea de Mueble / Pieza</label>
+                    <select onchange="updateRowPrice(this, ${rowId})" class="item-product w-full bg-white border border-stone-200 p-2 rounded-lg text-stone-900 text-sm outline-none focus:ring-2 focus:ring-amber-600 transition" required>
+                        <option value="">Seleccionar del catálogo...</option>
+                        ${productsCache.map(p => `<option value="${p.id}" data-price="${p.price}">${p.name} (€${p.price})</option>`).join('')}
+                    </select>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-[10px] text-stone-400 uppercase mb-1 font-bold tracking-wider">Unidades</label>
+                    <input type="number" min="1" value="1" class="item-qty w-full bg-white border border-stone-200 p-2 rounded-lg text-stone-900 text-sm outline-none focus:ring-2 focus:ring-amber-600 transition" required />
+                </div>
+                <div class="md:col-span-3">
+                    <label class="block text-[10px] text-stone-400 uppercase mb-1 font-bold tracking-wider">Precio de Tarifa (€)</label>
+                    <input type="number" step="0.01" class="item-price w-full bg-white border border-stone-200 p-2 rounded-lg text-stone-900 text-sm outline-none focus:ring-2 focus:ring-amber-600 transition" required />
+                </div>
+                <div class="md:col-span-1 flex justify-end">
+                    <button type="button" onclick="document.getElementById('row-${rowId}').remove()" class="text-red-500 p-2 hover:bg-red-50 rounded-lg transition"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', rowHtml);
+    }
+
+    // 2. Inicialización de Eventos y Carga de la Base de Datos (Secuencial Protegida)
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Primero cargamos los pedidos existentes en la tabla
+        loadOrders();
+
+        // Seguidamente, forzamos la descarga del catálogo ANTES de que el usuario pueda abrir el modal
+        await initSelectors();
+
+        try {
+            const statusFilter = document.getElementById('statusFilter');
+            if (statusFilter) statusFilter.addEventListener('change', filterOrders);
+
+            const btnNewOrder = document.getElementById('btnNewOrder');
+            if (btnNewOrder) btnNewOrder.addEventListener('click', () => openOrderForm('create'));
+
+            const orderModalClose = document.getElementById('orderModalClose');
+            if (orderModalClose) orderModalClose.addEventListener('click', () => document.getElementById('orderModal').classList.add('hidden'));
+        } catch (err) {
+            console.error("Error al vincular controles:", err);
+        }
+    });
+
+    // 3. Poblar selectores de Clientes y Catálogo de Muebles asegurando la caché
+    async function initSelectors() {
+        try {
+            const [clientsRes, productsRes] = await Promise.all([
+                fetch(`${API_BASE}/clients/`).then(r => r.json()).catch(() => ({ clients: [] })),
+                fetch(`${API_BASE}/products/`).then(r => r.json()).catch(() => ({ products: [] }))
+            ]);
+            
+            const clientSel = document.getElementById('orderClient');
+            if (clientSel) {
+                clientSel.innerHTML = '<option value="">Seleccionar cliente...</option>';
+                const clientes = clientsRes.clients || clientsRes || [];
+                clientes.forEach(c => {
                     clientSel.insertAdjacentHTML('beforeend', `<option value="${c.id}">${c.name}</option>`);
                 });
-                productsCache = productsRes.products || productsRes;
-            } catch (e) { console.error("Error cargando datos", e); }
-        }
-
-        async function loadOrders() {
-            try {
-                const response = await fetch(`${API_BASE}/orders/`);
-                if (!response.ok) throw new Error(response.status);
-                const data = await response.json();
-                allOrders = data.orders || data;
-                displayOrders(allOrders);
-            } catch (error) {
-                showError(`Error ${error.message}: No se pudo acceder a los pedidos.`);
             }
+            
+            // Guardamos los productos en la caché global de la aplicación web
+            productsCache = productsRes.products || productsRes || [];
+            console.log("Catálogo cargado con éxito en caché. Total ítems:", productsCache.length);
+        } catch (e) { 
+            console.error("Error al inicializar listas desplegables:", e); 
         }
+    }
 
-        function displayOrders(orders) {
-            const tbody = document.getElementById('ordersTableBody');
-            if (orders.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-slate-500">No hay pedidos</td></tr>';
+    // 4. Carga e Inserción de Filas en la Tabla Principal
+    async function loadOrders() {
+        try {
+            const response = await fetch(`${API_BASE}/orders/`);
+            if (!response.ok) throw new Error(`Estado del servidor: ${response.status}`);
+            const data = await response.json();
+            allOrders = data.orders || data || [];
+            displayOrders(allOrders);
+        } catch (error) {
+            console.error("Error en loadOrders:", error);
+            showError(`No se pudo conectar con la base de datos: ${error.message}`);
+        }
+    }
+
+    function displayOrders(orders) {
+        const tbody = document.getElementById('ordersTableBody');
+        if (!tbody) return;
+
+        if (!orders || orders.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-stone-400">No hay pedidos registrados en la base de datos</td></tr>';
+            return;
+        }
+        tbody.innerHTML = orders.map(o => `
+            <tr class="hover:bg-stone-50 transition">
+                <td class="px-6 py-4 font-mono text-amber-700 font-bold">${o.order_number || ''}</td>
+                <td class="px-6 py-4 font-medium text-stone-900">${o.client_name || 'Desconocido'}</td>
+                <td class="px-6 py-4 text-stone-500">${o.order_date || ''}</td>
+                <td class="px-6 py-4 font-bold text-stone-900">€${parseFloat(o.final_amount || 0).toFixed(2)}</td>
+                <td class="px-6 py-4">
+                    <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase ${getStatusClass(o.status)}">${o.status || 'pendiente'}</span>
+                </td>
+                <td class="px-6 py-4 text-center text-stone-400">
+                    <button onclick="deleteOrder(${o.id})" class="text-red-600 hover:text-red-800 transition"><i class="fas fa-trash text-base"></i></button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function getStatusClass(status) {
+        const map = {
+            'entregado': 'bg-emerald-100 text-emerald-800',
+            'enviado': 'bg-blue-100 text-blue-800',
+            'pendiente': 'bg-amber-100 text-amber-800',
+            'cancelado': 'bg-red-100 text-red-800'
+        };
+        return map[status] || 'bg-stone-100 text-stone-700';
+    }
+
+    function updateRowPrice(select, rowId) {
+        const price = select.options[select.selectedIndex].dataset.price;
+        const row = document.getElementById(`row-${rowId}`);
+        if(price && row) {
+            const priceInput = row.querySelector('.item-price');
+            if (priceInput) priceInput.value = price;
+        }
+    }
+
+    function openOrderForm(mode) {
+        const modal = document.getElementById('orderModal');
+        const form = document.getElementById('orderForm');
+        if (form) form.reset();
+        
+        const container = document.getElementById('orderItems');
+        if (container) container.innerHTML = '';
+        
+        const orderNumberInput = document.getElementById('orderNumber');
+        if (orderNumberInput) orderNumberInput.value = 'PED-' + Math.floor(Math.random() * 10000);
+        
+        // Ahora sí, llamamos sabiendo con total certeza que productsCache tiene los productos reales
+        addOrderItemRow();
+        if (modal) modal.classList.remove('hidden');
+    }
+
+    // 5. Envío de Formulario unificado y libre de errores de casteo
+    const orderForm = document.getElementById('orderForm');
+    if (orderForm) {
+        orderForm.onsubmit = async (e) => {
+            e.preventDefault();
+            
+            const clientId = document.getElementById('orderClient').value;
+            if (!clientId) {
+                alert("Por favor, asigna un cliente al pedido.");
                 return;
             }
-            tbody.innerHTML = orders.map(o => `
-                <tr class="border-b border-slate-700 hover:bg-slate-700/30 transition">
-                    <td class="px-6 py-4 font-mono text-orange-400 font-bold">${o.order_number}</td>
-                    <td class="px-6 py-4 text-white">${o.client_name || 'Desconocido'}</td>
-                    <td class="px-6 py-4 text-slate-400">${o.order_date}</td>
-                    <td class="px-6 py-4 font-bold text-green-400">€${parseFloat(o.final_amount).toFixed(2)}</td>
-                    <td class="px-6 py-4">
-                        <span class="px-3 py-1 rounded-lg text-[10px] font-black uppercase border ${getStatusClass(o.status)}">${o.status}</span>
-                    </td>
-                    <td class="px-6 py-4 text-center">
-                        <button onclick="deleteOrder(${o.id})" class="text-slate-400 hover:text-red-400 transition"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-            `).join('');
-        }
 
-        function getStatusClass(status) {
-            const map = {
-                'entregado': 'text-green-400 border-green-500/30 bg-green-500/10',
-                'enviado': 'text-blue-400 border-blue-500/30 bg-blue-500/10',
-                'pendiente': 'text-yellow-400 border-yellow-500/30 bg-yellow-500/10',
-                'cancelado': 'text-red-400 border-red-500/30 bg-red-500/10'
-            };
-            return map[status] || 'text-slate-400 border-slate-500/30';
-        }
-
-        function addOrderItemRow() {
-            const container = document.getElementById('orderItems');
-            const rowId = Date.now();
-            const rowHtml = `
-                <div id="row-${rowId}" class="grid grid-cols-1 md:grid-cols-12 gap-3 bg-slate-950/40 p-4 rounded-xl border border-slate-800 items-end">
-                    <div class="md:col-span-6">
-                        <label class="block text-[10px] text-slate-500 uppercase mb-1 font-bold">Producto</label>
-                        <select onchange="updateRowPrice(this, ${rowId})" class="item-product w-full bg-slate-800 border border-slate-700 p-2 rounded-lg text-white text-sm outline-none">
-                            <option value="">Seleccionar...</option>
-                            ${productsCache.map(p => `<option value="${p.id}" data-price="${p.price}">${p.name} (€${p.price})</option>`).join('')}
-                        </select>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-[10px] text-slate-500 uppercase mb-1 font-bold">Cant.</label>
-                        <input type="number" min="1" value="1" class="item-qty w-full bg-slate-800 border border-slate-700 p-2 rounded-lg text-white text-sm outline-none" />
-                    </div>
-                    <div class="md:col-span-3">
-                        <label class="block text-[10px] text-slate-500 uppercase mb-1 font-bold">Precio Unit.</label>
-                        <input type="number" step="0.01" class="item-price w-full bg-slate-800 border border-slate-700 p-2 rounded-lg text-white text-sm outline-none" />
-                    </div>
-                    <div class="md:col-span-1 flex justify-end">
-                        <button type="button" onclick="document.getElementById('row-${rowId}').remove()" class="text-red-500 p-2 hover:bg-red-500/10 rounded-lg transition"><i class="fas fa-times"></i></button>
-                    </div>
-                </div>
-            `;
-            container.insertAdjacentHTML('beforeend', rowHtml);
-        }
-
-        function updateRowPrice(select, rowId) {
-            const price = select.options[select.selectedIndex].dataset.price;
-            if(price) document.getElementById(`row-${rowId}`).querySelector('.item-price').value = price;
-        }
-
-        function openOrderForm(mode) {
-            const modal = document.getElementById('orderModal');
-            document.getElementById('orderForm').reset();
-            document.getElementById('orderItems').innerHTML = '';
-            document.getElementById('orderNumber').value = 'PED-' + Math.floor(Math.random() * 10000);
-            addOrderItemRow();
-            modal.classList.remove('hidden');
-        }
-
-        document.getElementById('orderForm').onsubmit = async (e) => {
-            e.preventDefault();
             const items = [];
-            document.querySelectorAll('#orderItems > div').forEach(row => {
-                const pid = row.querySelector('.item-product').value;
-                if(pid) items.push({
-                    product_id: parseInt(pid),
-                    quantity: parseInt(row.querySelector('.item-qty').value),
-                    unit_price: parseFloat(row.querySelector('.item-price').value)
-                });
+            const rows = document.querySelectorAll('.order-item-row');
+
+            rows.forEach((row, index) => {
+                const productSelect = row.querySelector('.item-product');
+                const quantityInput = row.querySelector('.item-qty');
+                const priceInput = row.querySelector('.item-price');
+                
+                if (productSelect) {
+                    const rawId = productSelect.value;
+                    const rawQty = quantityInput ? quantityInput.value : "1";
+                    let rawPrice = priceInput ? priceInput.value : "0";
+                    
+                    // Limpieza preventiva de separadores decimales regionales
+                    rawPrice = rawPrice.replace(',', '.'); 
+
+                    if (rawId && rawId.trim() !== "") {
+                        const pid = parseInt(rawId);
+                        const qty = parseInt(rawQty) || 1;
+                        const price = parseFloat(rawPrice) || 0;
+                        
+                        if (!isNaN(pid) && pid > 0) {
+                            items.push({
+                                product_id: pid,
+                                quantity: qty,
+                                unit_price: price
+                            });
+                        }
+                    }
+                }
             });
+
+            if (items.length === 0) {
+                alert("Debes añadir al menos un artículo válido.\n\nNota técnica: Revisa si el selector de productos tiene las opciones cargadas correctamente.");
+                return;
+            }
 
             const payload = {
                 order_number: document.getElementById('orderNumber').value,
-                client_id: parseInt(document.getElementById('orderClient').value),
-                payment_method: document.getElementById('orderPayment').value,
-                order_date: new Date().toISOString().split('T')[0],
+                client_id: parseInt(clientId),
+                payment_method: document.getElementById('orderPayment').value || 'transferencia',
+                status: 'pendiente',
+                discount_percentage: 0,
                 items: items
             };
 
@@ -267,32 +348,46 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                if (res.ok) {
+                
+                const data = await res.json();
+                
+                if (res.ok || res.status === 201) {
+                    alert(`🎉 Pedido creado con éxito.`);
                     document.getElementById('orderModal').classList.add('hidden');
-                    loadOrders();
+                    loadOrders(); 
                 } else {
-                    const errorData = await res.json();
-                    alert("Error: " + (errorData.error || "No autorizado o datos inválidos"));
+                    alert("Error enviado por el servidor: " + (data.error || "No se pudo procesar"));
                 }
-            } catch (err) { alert("Error de red"); }
+            } catch (err) { 
+                alert("Error de red al intentar conectar con el servidor."); 
+            }
         };
+    }
 
-        async function deleteOrder(id) {
-            if(confirm('¿Eliminar pedido?')) {
+    // 6. Funciones Auxiliares (Eliminar y Filtros)
+    async function deleteOrder(id) {
+        if(confirm('¿Eliminar pedido de forma permanente?')) {
+            try {
                 await fetch(`${API_BASE}/orders/${id}`, { method: 'DELETE' });
                 loadOrders();
-            }
+            } catch (e) { console.error(e); }
         }
+    }
 
-        function filterOrders() {
-            const val = document.getElementById('statusFilter').value;
-            const filtered = val ? allOrders.filter(o => o.status === val) : allOrders;
-            displayOrders(filtered);
-        }
+    function filterOrders() {
+        const filterEl = document.getElementById('statusFilter');
+        if (!filterEl) return;
+        const val = filterEl.value;
+        const filtered = val ? allOrders.filter(o => o.status === val) : allOrders;
+        displayOrders(filtered);
+    }
 
-        function showError(msg) {
-            document.getElementById('ordersTableBody').innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-red-400">❌ ${msg}</td></tr>`;
+    function showError(msg) {
+        const tbody = document.getElementById('ordersTableBody');
+        if (tbody) {
+            tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-red-600 font-medium">❌ ${msg}</td></tr>`;
         }
-    </script>
+    }
+</script>
 </body>
 </html>

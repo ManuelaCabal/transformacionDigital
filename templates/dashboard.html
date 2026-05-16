@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM TechSolutions - Dashboard</title>
+    <title>DecoHOME - Panel Corporativo</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-200">
+<body class="bg-gradient-to-br from-stone-50 via-stone-100 to-orange-50/30 text-stone-800 antialiased">
     <div class="min-h-screen">
-        <nav class="bg-slate-950 border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+        <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-chart-line text-white"></i>
+                        <div class="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <i class="fas fa-chair text-white"></i>
                         </div>
-                        <h1 class="text-2xl font-bold text-white">TechSolutions CRM</h1>
+                        <h1 class="text-2xl font-bold text-stone-900">Deco<span class="text-amber-700 font-light">HOME</span></h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="/" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                        <a href="/" class="text-stone-600 hover:text-amber-700 transition px-3 py-2 rounded-lg hover:bg-stone-100 font-medium text-sm">
                             <i class="fas fa-home mr-2"></i>Inicio
                         </a>
-                        <a href="/logout" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                        <a href="/logout" class="text-stone-600 hover:text-red-600 transition px-3 py-2 rounded-lg hover:bg-red-50 font-medium text-sm">
                             <i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión
                         </a>
                     </div>
@@ -33,29 +33,27 @@
         </nav>
 
         <div class="flex">
-            <aside class="w-64 bg-slate-900 border-r border-slate-700 min-h-screen hidden lg:block">
+            <aside class="w-64 bg-white border-r border-stone-200 min-h-screen hidden lg:block shadow-sm">
                 <div class="p-6">
-                    <h3 class="text-white font-semibold mb-6">Menú Principal</h3>
-                    <nav class="space-y-2">
-
-                        <a href="/clients" class="block px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">
-                            <i class="fas fa-users mr-2"></i>Clientes
+                    <h3 class="text-stone-400 text-xs font-bold uppercase tracking-wider mb-4">Menú Principal</h3>
+                    <nav class="space-y-1">
+                        <a href="/clients" class="flex items-center px-4 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 hover:text-amber-700 font-medium transition">
+                            <i class="fas fa-users w-6 text-stone-400 group-hover:text-amber-700"></i>Clientes
                         </a>
-
-                        <a href="/orders" class="block px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">
-                            <i class="fas fa-shopping-cart mr-2"></i>Pedidos
+                        <a href="/orders" class="flex items-center px-4 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 hover:text-amber-700 font-medium transition">
+                            <i class="fas fa-shopping-cart w-6 text-stone-400"></i>Pedidos
                         </a>
-                        <a href="/employees" class="block px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">
-                            <i class="fas fa-id-badge mr-2"></i>Empleados
+                        <a href="/employees" class="flex items-center px-4 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 hover:text-amber-700 font-medium transition">
+                            <i class="fas fa-id-badge w-6 text-stone-400"></i>Personal
                         </a>
-                        <a href="/products" class="block px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">
-                            <i class="fas fa-box mr-2"></i>Productos
+                        <a href="/products" class="flex items-center px-4 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 hover:text-amber-700 font-medium transition">
+                            <i class="fas fa-couch w-6 text-stone-400"></i>Mobiliario
                         </a>
-                        <a href="/campaigns" class="block px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">
-                            <i class="fas fa-bullhorn mr-2"></i>Campañas
+                        <a href="/campaigns" class="flex items-center px-4 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 hover:text-amber-700 font-medium transition">
+                            <i class="fas fa-bullhorn w-6 text-stone-400"></i>Campañas
                         </a>
-                        <a href="/reports" class="block px-4 py-2 rounded-lg text-slate-300 hover:bg-slate-800 transition">
-                            <i class="fas fa-chart-bar mr-2"></i>Reportes
+                        <a href="/reports" class="flex items-center px-4 py-2.5 rounded-xl text-stone-700 hover:bg-stone-50 hover:text-amber-700 font-medium transition">
+                            <i class="fas fa-chart-bar w-6 text-stone-400"></i>Reportes
                         </a>
                     </nav>
                 </div>
@@ -65,123 +63,121 @@
                 <div class="max-w-7xl mx-auto">
                     <div class="mb-8 flex items-center justify-between">
                         <div>
-                            <h2 class="text-3xl font-bold text-white mb-2">Dashboard</h2>
-                            <p class="text-slate-400">Resumen de actividades y métricas clave</p>
+                            <h2 class="text-3xl font-bold text-stone-900 mb-1">Dashboard Corporativo</h2>
+                            <p class="text-stone-500 text-sm">Resumen de operaciones de diseño y volumen de inventario</p>
                         </div>
-                        <div class="text-slate-400 text-sm">
-                            <i class="fas fa-clock mr-1"></i> <span id="lastUpdate">Cargando...</span>
+                        <div class="text-stone-400 text-xs bg-white border border-stone-200 px-3 py-1.5 rounded-xl shadow-sm">
+                            <i class="fas fa-clock mr-1 text-amber-600"></i> <span id="lastUpdate">Cargando...</span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-blue-500 transition">
+                        <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:border-amber-600 transition duration-300">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-slate-400 text-xs font-bold uppercase">Clientes</p>
-                                    <p class="text-3xl font-bold text-white" id="total-clients">0</p>
+                                    <p class="text-stone-400 text-xs font-bold uppercase tracking-wider">Clientes</p>
+                                    <p class="text-3xl font-bold text-stone-900 mt-1" id="total-clients">0</p>
                                 </div>
-                                <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400">
-                                    <i class="fas fa-users text-xl"></i>
+                                <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-700">
+                                    <i class="fas fa-users text-lg"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-green-500 transition">
+                        <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:border-emerald-600 transition duration-300">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-slate-400 text-xs font-bold uppercase">Pedidos</p>
-                                    <p class="text-3xl font-bold text-white" id="total-orders">0</p>
+                                    <p class="text-stone-400 text-xs font-bold uppercase tracking-wider">Pedidos</p>
+                                    <p class="text-3xl font-bold text-stone-900 mt-1" id="total-orders">0</p>
                                 </div>
-                                <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400">
-                                    <i class="fas fa-shopping-cart text-xl"></i>
+                                <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-700">
+                                    <i class="fas fa-shopping-cart text-lg"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-purple-500 transition">
+                        <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:border-amber-500 transition duration-300">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-slate-400 text-xs font-bold uppercase">Ingresos</p>
-                                    <p class="text-3xl font-bold text-white" id="total-revenue">€0</p>
+                                    <p class="text-stone-400 text-xs font-bold uppercase tracking-wider">Ingresos</p>
+                                    <p class="text-3xl font-bold text-stone-900 mt-1" id="total-revenue">€0</p>
                                 </div>
-                                <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400">
-                                    <i class="fas fa-euro-sign text-xl"></i>
+                                <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-700">
+                                    <i class="fas fa-euro-sign text-lg"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-orange-500 transition">
+                        <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm hover:border-stone-400 transition duration-300">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-slate-400 text-xs font-bold uppercase">Stock Total</p>
-                                    <p class="text-3xl font-bold text-white" id="delivered-orders">0</p>
+                                    <p class="text-stone-400 text-xs font-bold uppercase tracking-wider">Stock Total</p>
+                                    <p class="text-3xl font-bold text-stone-900 mt-1" id="delivered-orders">0</p>
                                 </div>
-                                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-400">
-                                    <i class="fas fa-boxes-stacked text-xl"></i>
+                                <div class="w-12 h-12 bg-stone-100 rounded-xl flex items-center justify-center text-stone-600">
+                                    <i class="fas fa-cubes text-lg"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                        <div class="lg:col-span-2 bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-xl">
-                            <h3 class="text-lg font-semibold text-white mb-6">Tendencia de Ingresos</h3>
+                        <div class="lg:col-span-2 bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
+                            <h3 class="text-lg font-bold text-stone-900 mb-6">Tendencia de Ingresos</h3>
                             <canvas id="revenueChart"></canvas>
                         </div>
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-xl">
-                            <h3 class="text-lg font-semibold text-white mb-6">Estado Clientes</h3>
+                        <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
+                            <h3 class="text-lg font-bold text-stone-900 mb-6">Estado Clientes</h3>
                             <canvas id="clientsChart"></canvas>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-xl">
+                        <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
                             <div class="flex justify-between items-center mb-6">
-                                <h3 class="text-lg font-semibold text-white">Top Productos (Stock)</h3>
-                                <a href="/products" class="text-blue-400 text-xs hover:underline">Ver catálogo</a>
+                                <h3 class="text-lg font-bold text-stone-900">Catálogo Destacado (Stock)</h3>
+                                <a href="/products" class="text-amber-700 text-xs font-semibold hover:underline">Ver todo el catálogo</a>
                             </div>
-                            <div id="topProducts" class="space-y-4">
-                                </div>
+                            <div id="topProducts" class="space-y-3"></div>
                         </div>
 
-                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow-xl">
-                            <h3 class="text-lg font-semibold text-white mb-6">Acciones Rápidas</h3>
+                        <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
+                            <h3 class="text-lg font-bold text-stone-900 mb-6">Acciones Rápidas</h3>
                             <div class="grid grid-cols-2 gap-4">
-                                <button onclick="location.href='/clients'" class="bg-blue-600 hover:bg-blue-700 p-4 rounded-xl text-white transition flex flex-col items-center">
-                                    <i class="fas fa-user-plus mb-2 text-xl"></i>
-                                    <span class="text-sm">Cliente</span>
+                                <button onclick="location.href='/clients'" class="bg-amber-700 hover:bg-amber-800 p-4 rounded-xl text-white font-medium transition flex flex-col items-center shadow-sm">
+                                    <i class="fas fa-user-plus mb-2 text-lg"></i>
+                                    <span class="text-xs">Nuevo Cliente</span>
                                 </button>
-                                <button onclick="location.href='/orders'" class="bg-green-600 hover:bg-green-700 p-4 rounded-xl text-white transition flex flex-col items-center">
-                                    <i class="fas fa-cart-plus mb-2 text-xl"></i>
-                                    <span class="text-sm">Pedido</span>
+                                <button onclick="location.href='/orders'" class="bg-emerald-700 hover:bg-emerald-800 p-4 rounded-xl text-white font-medium transition flex flex-col items-center shadow-sm">
+                                    <i class="fas fa-cart-plus mb-2 text-lg"></i>
+                                    <span class="text-xs">Registrar Pedido</span>
                                 </button>
-                                <button onclick="location.href='/products'" class="bg-purple-600 hover:bg-purple-700 p-4 rounded-xl text-white transition flex flex-col items-center">
-                                    <i class="fas fa-box mb-2 text-xl"></i>
-                                    <span class="text-sm">Producto</span>
+                                <button onclick="location.href='/products'" class="bg-stone-800 hover:bg-stone-900 p-4 rounded-xl text-white font-medium transition flex flex-col items-center shadow-sm">
+                                    <i class="fas fa-couch mb-2 text-lg"></i>
+                                    <span class="text-xs">Añadir Mueble</span>
                                 </button>
-                                <button onclick="location.href='/employees'" class="bg-orange-600 hover:bg-orange-700 p-4 rounded-xl text-white transition flex flex-col items-center">
-                                    <i class="fas fa-id-card mb-2 text-xl"></i>
-                                    <span class="text-sm">Personal</span>
+                                <button onclick="location.href='/employees'" class="bg-orange-600 hover:bg-orange-700 p-4 rounded-xl text-white font-medium transition flex flex-col items-center shadow-sm">
+                                    <i class="fas fa-id-card mb-2 text-lg"></i>
+                                    <span class="text-xs">Ficha Personal</span>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-slate-800 rounded-xl border border-slate-700 shadow-xl overflow-hidden">
-                        <div class="p-6 border-b border-slate-700 flex justify-between items-center">
-                            <h3 class="text-lg font-semibold text-white">Pedidos Recientes</h3>
-                            <a href="/orders" class="text-blue-400 text-xs hover:underline">Ver todos</a>
+                    <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+                        <div class="p-6 border-b border-stone-200 flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-stone-900">Pedidos Recientes</h3>
+                            <a href="/orders" class="text-amber-700 text-xs font-semibold hover:underline">Ver historial</a>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-sm text-left">
-                                <thead class="bg-slate-900/50 text-slate-400">
+                            <table class="w-full text-sm text-left text-stone-600">
+                                <thead class="bg-stone-50 text-stone-500 uppercase text-xs tracking-wider border-b border-stone-200">
                                     <tr>
-                                        <th class="px-6 py-3 font-semibold">Número</th>
-                                        <th class="px-6 py-3 font-semibold">Cliente</th>
-                                        <th class="px-6 py-3 font-semibold">Monto</th>
-                                        <th class="px-6 py-3 font-semibold">Estado</th>
-                                        <th class="px-6 py-3 font-semibold">Fecha</th>
+                                        <th class="px-6 py-3.5 font-bold">Número</th>
+                                        <th class="px-6 py-3.5 font-bold">Cliente</th>
+                                        <th class="px-6 py-3.5 font-bold">Monto</th>
+                                        <th class="px-6 py-3.5 font-bold">Estado</th>
+                                        <th class="px-6 py-3.5 font-bold">Fecha</th>
                                     </tr>
                                 </thead>
-                                <tbody id="recentOrders" class="divide-y divide-slate-700">
-                                    </tbody>
+                                <tbody id="recentOrders" class="divide-y divide-stone-100"></tbody>
                             </table>
                         </div>
                     </div>
@@ -225,28 +221,28 @@
                 // Recent Table
                 const recentTbody = document.getElementById('recentOrders');
                 recentTbody.innerHTML = orders.slice(-5).reverse().map(o => `
-                    <tr class="hover:bg-slate-700/30 transition">
-                        <td class="px-6 py-4 font-mono text-blue-400">${o.order_number}</td>
-                        <td class="px-6 py-4">${o.client_name || 'Desconocido'}</td>
-                        <td class="px-6 py-4 font-bold text-white">€${parseFloat(o.final_amount).toFixed(2)}</td>
+                    <tr class="hover:bg-stone-50 transition">
+                        <td class="px-6 py-4 font-mono font-bold text-amber-700">${o.order_number}</td>
+                        <td class="px-6 py-4 font-medium text-stone-900">${o.client_name || 'Desconocido'}</td>
+                        <td class="px-6 py-4 font-bold text-stone-900">€${parseFloat(o.final_amount).toFixed(2)}</td>
                         <td class="px-6 py-4">
-                            <span class="px-2 py-1 rounded text-[10px] font-black uppercase ${o.status === 'entregado' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}">
+                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase ${o.status === 'entregado' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
                                 ${o.status}
                             </span>
                         </td>
-                        <td class="px-6 py-4 text-slate-500 text-xs">${o.order_date}</td>
+                        <td class="px-6 py-4 text-stone-400 text-xs">${o.order_date}</td>
                     </tr>
                 `).join('');
 
                 // Top Products
                 const topProductsContainer = document.getElementById('topProducts');
                 topProductsContainer.innerHTML = products.slice(0, 3).map(p => `
-                    <div class="flex items-center justify-between p-3 bg-slate-900/40 rounded-xl border border-slate-700/50">
+                    <div class="flex items-center justify-between p-3.5 bg-stone-50 rounded-xl border border-stone-200/60">
                         <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-blue-500/20 rounded flex items-center justify-center"><i class="fas fa-box text-blue-400 text-xs"></i></div>
-                            <span class="text-sm font-medium text-white">${p.name}</span>
+                            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center"><i class="fas fa-couch text-amber-700 text-xs"></i></div>
+                            <span class="text-sm font-semibold text-stone-800">${p.name}</span>
                         </div>
-                        <span class="text-xs font-bold text-slate-500">Stock: ${p.stock}</span>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-white border border-stone-200 rounded-lg text-stone-500">Stock: ${p.stock}</span>
                     </div>
                 `).join('');
 
@@ -262,6 +258,7 @@
                 revData[o.order_date] = (revData[o.order_date] || 0) + parseFloat(o.final_amount);
             });
 
+            // Ajustamos colores del gráfico de líneas a tonos corporativos cálidos
             new Chart(document.getElementById('revenueChart'), {
                 type: 'line',
                 data: {
@@ -269,8 +266,8 @@
                     datasets: [{
                         label: 'Ventas (€)',
                         data: Object.values(revData),
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderColor: '#b45309', // Terracota amber-700
+                        backgroundColor: 'rgba(180, 83, 9, 0.05)',
                         fill: true,
                         tension: 0.4
                     }]
@@ -279,8 +276,8 @@
                     responsive: true, 
                     plugins: { legend: { display: false } },
                     scales: { 
-                        y: { ticks: { color: '#64748b' }, grid: { color: '#334155' } },
-                        x: { ticks: { color: '#64748b' }, grid: { display: false } }
+                        y: { ticks: { color: '#78716c' }, grid: { color: '#e7e5e4' } },
+                        x: { ticks: { color: '#78716c' }, grid: { display: false } }
                     }
                 }
             });
@@ -289,19 +286,20 @@
             const counts = { activo: 0, prospect: 0, inactivo: 0 };
             clients.forEach(c => { if(counts[c.status] !== undefined) counts[c.status]++; });
 
+            // Ajustamos paleta del Doughnut a tonos de diseño (Esmeralda, Oro Viejo y Piedra)
             new Chart(document.getElementById('clientsChart'), {
                 type: 'doughnut',
                 data: {
                     labels: ['Activos', 'Prospectos', 'Inactivos'],
                     datasets: [{
                         data: Object.values(counts),
-                        backgroundColor: ['#10b981', '#3b82f6', '#64748b'],
+                        backgroundColor: ['#047857', '#d97706', '#78716c'],
                         borderWidth: 0
                     }]
                 },
                 options: { 
                     responsive: true,
-                    plugins: { legend: { position: 'bottom', labels: { color: '#94a3b8', usePointStyle: true } } }
+                    plugins: { legend: { position: 'bottom', labels: { color: '#57534e', usePointStyle: true } } }
                 }
             });
         }

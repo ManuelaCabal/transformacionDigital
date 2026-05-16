@@ -3,180 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechSolutions CRM - Solución Integral de Gestión</title>
+    <title>DecoHOME S.L. | Diseño y Decoración de Interiores</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-    <!-- Navigation -->
-    <nav class="bg-slate-950/80 backdrop-blur border-b border-slate-700">
+<body class="bg-gradient-to-br from-stone-50 via-stone-100 to-orange-50/30 text-stone-800">
+    <nav class="bg-white/80 backdrop-blur border-b border-stone-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-rocket text-white"></i>
+                    <div class="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center shadow-sm">
+                        <i class="fas fa-chair text-white"></i>
                     </div>
-                    <h1 class="text-2xl font-bold">TechSolutions</h1>
+                    <h1 class="text-2xl font-bold tracking-tight text-stone-900">Deco<span class="text-amber-700 font-light">HOME</span></h1>
                 </div>
-                    <a href="#features" class="text-slate-300 hover:text-white transition">Características</a>
-                    <a href="#about" class="text-slate-300 hover:text-white transition">Acerca de</a>
-                    <a href="/dashboard" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition transform hover:scale-105">
+                <div class="flex items-center space-x-6">
+                    <a href="#features" class="text-stone-600 hover:text-amber-700 font-medium transition">Servicios</a>
+                    <a href="#about" class="text-stone-600 hover:text-amber-700 font-medium transition">Acerca de</a>
+                    <a href="/dashboard" class="bg-amber-700 hover:bg-amber-800 text-white px-6 py-2.5 rounded-lg font-semibold shadow-sm transition transform hover:scale-105">
                         Acceso empleados CRM
                     </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                    CRM Profesional para Tu Negocio Digital
+                <h2 class="text-5xl font-bold mb-6 text-stone-900 leading-tight">
+                    Diseño, Fabricación y <br><span class="bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">Distribución de Mobiliario</span>
                 </h2>
-                <p class="text-xl text-slate-300 mb-8">
-                    Solución completa para gestionar clientes, productos, pedidos y campañas de marketing. Automatiza tus procesos y aumenta tus ventas.
+                <p class="text-xl text-stone-600 mb-8 leading-relaxed">
+                    Solución integrada para el seguimiento de proyectos de interiorismo, catálogo de productos de vanguardia, control de pedidos y campañas de temporada.
                 </p>
                 <div class="flex space-x-4">
                 </div>
             </div>
             <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg blur-3xl opacity-20"></div>
-                <div class="relative bg-slate-800 rounded-xl p-8 border border-slate-700">
-                    <div class="space-y-4">
-                        <div class="h-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded w-3/4"></div>
-                        <div class="h-4 bg-slate-700 rounded"></div>
-                        <div class="h-4 bg-slate-700 rounded w-5/6"></div>
-                        <div class="h-4 bg-slate-700 rounded w-2/3"></div>
-                    </div>
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-200 to-orange-200 rounded-2xl blur-3xl opacity-30"></div>
+                <div class="relative overflow-hidden rounded-2xl border border-stone-200 shadow-xl bg-stone-100 aspect-[4/3] w-full flex items-center justify-center">
+                    <img src="{{ url_for('static', filename='images/muebles_en_decoracion.jpg') }}" alt="Diseño de interiores y mobiliario DecoHOME" class="w-full h-full object-cover object-center transform hover:scale-102 transition duration-500">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="bg-slate-800/50 border-y border-slate-700 py-16">
+    <section class="bg-stone-900 text-stone-100 py-16 shadow-inner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                    <p class="text-4xl font-bold text-blue-400">8</p>
-                    <p class="text-slate-400 mt-2">Empleados</p>
+                    <p class="text-4xl font-bold text-amber-400">8</p>
+                    <p class="text-stone-400 mt-2 font-medium">Especialistas</p>
                 </div>
                 <div>
-                    <p class="text-4xl font-bold text-green-400">250K€</p>
-                    <p class="text-slate-400 mt-2">Ingresos Anuales</p>
+                    <p class="text-4xl font-bold text-emerald-400">Premium</p>
+                    <p class="text-stone-400 mt-2 font-medium">Calidad de Materiales</p>
                 </div>
                 <div>
-                    <p class="text-4xl font-bold text-purple-400">10+</p>
-                    <p class="text-slate-400 mt-2">Productos</p>
+                    <p class="text-4xl font-bold text-orange-400">10+</p>
+                    <p class="text-stone-400 mt-2 font-medium">Colecciones Exclusivas</p>
                 </div>
                 <div>
-                    <p class="text-4xl font-bold text-orange-400">95%</p>
-                    <p class="text-slate-400 mt-2">Satisfacción</p>
+                    <p class="text-4xl font-bold text-amber-500">95%</p>
+                    <p class="text-stone-400 mt-2 font-medium">Clientes Felices</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <h3 class="text-4xl font-bold text-center mb-16">Características Principales</h3>
+        <h3 class="text-4xl font-bold text-center text-stone-900 mb-16 tracking-tight">Experiencia y Servicios DecoHOME</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- CRM -->
-            <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-blue-500 transition">
-                <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-users text-blue-400 text-2xl"></i>
+            
+            <div class="bg-white rounded-xl p-8 border border-stone-200 shadow-sm hover:shadow-md hover:border-amber-600 transition duration-300">
+                <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-pencil-ruler text-amber-700 text-2xl"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-3">Gestión de Clientes</h4>
-                <p class="text-slate-400">Centraliza toda la información de tus clientes, track automático de interacciones y historial completo.</p>
+                <h4 class="text-xl font-semibold text-stone-900 mb-3">Interiorismo a Medida</h4>
+                <p class="text-stone-600">Creamos proyectos en 3D personalizados para tu hogar o local comercial, adaptando cada plano y distribución a tu estilo de vida.</p>
             </div>
 
-            <!-- Productos -->
-            <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-green-500 transition">
-                <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-box text-green-400 text-2xl"></i>
+            <div class="bg-white rounded-xl p-8 border border-stone-200 shadow-sm hover:shadow-md hover:border-emerald-700 transition duration-300">
+                <div class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-couch text-emerald-800 text-2xl"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-3">Catálogo de Productos</h4>
-                <p class="text-slate-400">Gestiona stock, precios, categorías y ofertas. Control total sobre tu inventario.</p>
+                <h4 class="text-xl font-semibold text-stone-900 mb-3">Mobiliario de Vanguardia</h4>
+                <p class="text-stone-600">Acceso a un catálogo de piezas de diseño contemporáneo y atemporal, fabricadas con maderas sostenibles y textiles de alta gama.</p>
             </div>
 
-            <!-- Pedidos -->
-            <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-purple-500 transition">
-                <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-shopping-cart text-purple-400 text-2xl"></i>
+            <div class="bg-white rounded-xl p-8 border border-stone-200 shadow-sm hover:shadow-md hover:border-amber-600 transition duration-300">
+                <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-handshake text-amber-700 text-2xl"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-3">Gestión de Pedidos</h4>
-                <p class="text-slate-400">Crea, registra y trackea pedidos en tiempo real. Estados automáticos y notificaciones.</p>
+                <h4 class="text-xl font-semibold text-stone-900 mb-3">Asesoría Personalizada</h4>
+                <p class="text-stone-600">Recibe un presupuesto transparente y detallado sin sorpresas. Te guiamos en la elección de acabados, texturas y paletas cromáticas.</p>
             </div>
 
-            <!-- Marketing -->
-            <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-orange-500 transition">
-                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-bullhorn text-orange-400 text-2xl"></i>
+            <div class="bg-white rounded-xl p-8 border border-stone-200 shadow-sm hover:shadow-md hover:border-orange-500 transition duration-300">
+                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-store text-orange-700 text-2xl"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-3">Campañas de Marketing</h4>
-                <p class="text-slate-400">Planifica y automatiza campañas de email, seguimiento de resultados y ROI.</p>
+                <h4 class="text-xl font-semibold text-stone-900 mb-3">Showroom de Exposición</h4>
+                <p class="text-stone-600">Visita nuestra exposición física para comprobar la comodidad de nuestros sofás, la calidad de los acabados y descubrir combinaciones únicas.</p>
             </div>
 
-            <!-- Análisis -->
-            <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-red-500 transition">
-                <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-chart-bar text-red-400 text-2xl"></i>
+            <div class="bg-white rounded-xl p-8 border border-stone-200 shadow-sm hover:shadow-md hover:border-stone-500 transition duration-300">
+                <div class="w-12 h-12 bg-stone-100 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-truck-loading text-stone-700 text-2xl"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-3">Análisis y Reportes</h4>
-                <p class="text-slate-400">Gráficos interactivos, KPIs en tiempo real y reportes automatizados.</p>
+                <h4 class="text-xl font-semibold text-stone-900 mb-3">Entrega y Montaje Propio</h4>
+                <p class="text-stone-600">Olvídate de las complicaciones. Nuestro equipo técnico especializado transporta e instala tus muebles en casa con el máximo cuidado.</p>
             </div>
 
-            <!-- Automación -->
-            <div class="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-cyan-500 transition">
-                <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fas fa-cogs text-cyan-400 text-2xl"></i>
+            <div class="bg-white rounded-xl p-8 border border-stone-200 shadow-sm hover:shadow-md hover:border-emerald-600 transition duration-300">
+                <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-shield-alt text-emerald-700 text-2xl"></i>
                 </div>
-                <h4 class="text-xl font-semibold mb-3">Automatización</h4>
-                <p class="text-slate-400">Workflows automáticos, recordatorios y tareas inteligentes para mayor productividad.</p>
+                <h4 class="text-xl font-semibold text-stone-900 mb-3">Garantía de Satisfacción</h4>
+                <p class="text-stone-600">Ofrecemos un servicio posventa excelente y coberturas ampliadas en la estructura de nuestros muebles para tu total tranquilidad.</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="bg-slate-800/50 border-y border-slate-700 py-24">
+    <section id="about" class="bg-stone-200/40 border-y border-stone-200 py-24">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-4xl font-bold text-center mb-8">Sobre TechSolutions CRM</h3>
-            <div class="prose prose-invert max-w-none space-y-4 text-slate-300">
+            <h3 class="text-4xl font-bold text-center text-stone-900 mb-8 tracking-tight">Sobre DecoHOME S.L.</h3>
+            <div class="prose max-w-none space-y-6 text-stone-600 text-lg leading-relaxed">
                 <p>
-                    <strong>TechSolutions S.L.</strong> es una empresa de 8 profesionales dedicados a la transformación digital. Con más de 3 años de experiencia, hemos implementado soluciones tecnológicas en más de 50 empresas del sector comercio online.
+                    <strong>DecoHOME S.L.</strong> es un estudio y distribuidor constituido por un equipo de 8 profesionales apasionados por el diseño de interiores, la curaduría de muebles de alta calidad y el montaje de espacios personalizados. Contamos con un showroom de exposición abierto al público y un almacén logístico centralizado.
                 </p>
                 <p>
-                    Este CRM ha sido desarrollado especialmente para empresas medianas que necesitan:
+                    Nuestra filosofía de trabajo se centra en acompañarte en cada fase de la renovación de tu hogar para garantizar un resultado excepcional:
                 </p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Automatizar la gestión de clientes y ventas</li>
-                    <li>Obtener análisis detallados de su negocio</li>
-                    <li>Mejorar la comunicación con clientes</li>
-                    <li>Optimizar procesos comerciales</li>
-                    <li>Tomar decisiones basadas en datos</li>
+                <ul class="list-disc list-inside space-y-2 pl-4 text-stone-700">
+                    <li>Conceptualización visual de los espacios basándonos en tus necesidades reales.</li>
+                    <li>Selección rigurosa de materiales duraderos que aportan calidez y diseño.</li>
+                    <li>Coordinación directa entre asesores en tienda y montadores a domicilio.</li>
+                    <li>Presupuestos claros que optimizan tu inversión en decoración.</li>
+                    <li>Compromiso absoluto con los plazos de entrega pactados.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-        <h3 class="text-4xl font-bold mb-6">¿Listo para transformar tu negocio?</h3>
-        <p class="text-xl text-slate-400 mb-8">Accede al dashboard y comienza a gestionar tu empresa de forma inteligente.</p>
-        <a href="/dashboard" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-10 py-4 rounded-lg font-semibold text-lg transition transform hover:scale-105">
-            Ir al Dashboard <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-700 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-400">
-            <p>&copy; 2024 TechSolutions S.L. - Soluciones de Transformación Digital</p>
-            <p class="mt-2 text-sm">
-                <i class="fas fa-map-marker-alt"></i> España | 
-                <i class="fas fa-phone"></i> +34 600 123 456 |
-                <i class="fas fa-envelope"></i> info@techsolutions.es
+    <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-stone-300 font-medium">&copy; 2026 DecoHOME S.L. - Todos los derechos reservados</p>
+            <p class="mt-3 text-sm tracking-wide space-x-4">
+                <span><i class="fas fa-map-marker-alt text-amber-500 mr-1"></i> España</span>
+                <span>•</span>
+                <span><i class="fas fa-phone text-amber-500 mr-1"></i> +34 900 123 456</span>
+                <span>•</span>
+                <span><i class="fas fa-envelope text-amber-500 mr-1"></i> contacto@decohome.es</span>
             </p>
         </div>
     </footer>

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from datetime import datetime, timedelta
+from datetime import datetime
 import pymysql
 
 orders_bp = Blueprint('orders', __name__)
@@ -71,16 +71,20 @@ def get_order(order_id):
 
 @orders_bp.route('/', methods=['POST'])
 def create_order():
-    """Crear nuevo pedido"""
+    """Crear nuevo pedido con validaciones de claves de producto"""
     try:
-        data = request.json
+        data = request.json or {}
+        
+        if 'client_id' not in data:
+            return jsonify({"error": "Falta el campo obligatorio 'client_id'"}), 400
+            
         from app import mysql
         cursor = mysql.connection.cursor(pymysql.cursors.DictCursor)
         
-        # Generar número de pedido
+        # Generar número de pedido DecoHOME
         order_number = f"PED-{datetime.now().strftime('%Y%m%d%H%M%S')}"
         
-        # Crear pedido
+        # Crear la cabecera del pedido inicializada en 0
         cursor.execute("""
             INSERT INTO orders (client_id, order_number, order_date, status, total_amount, final_amount, payment_method)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
@@ -91,30 +95,52 @@ def create_order():
         mysql.connection.commit()
         order_id = cursor.lastrowid
         
-        # Insertar items
         total = 0
-        if 'items' in data:
+        items_procesados = 0
+        
+        # Insertar e iterar de forma segura sobre los productos del carrito
+        if 'items' in data and isinstance(data['items'], list):
             for item in data['items']:
-                line_total = item['quantity'] * item['unit_price']
+                # Validación crítica: Extraer el ID buscando variaciones comunes del frontend
+                product_id = item.get('product_id') or item.get('id') or item.get('id_producto')
+                quantity = int(item.get('quantity', 0))
+                unit_price = float(item.get('unit_price') or item.get('price', 0))
+                
+                # Si no hay ID de producto válido, saltamos la línea para evitar el error 1048
+                if not product_id or quantity <= 0:
+                    continue
+                    
+                line_total = quantity * unit_price
+                
                 cursor.execute("""
                     INSERT INTO order_items (order_id, product_id, quantity, unit_price, line_total)
                     VALUES (%s, %s, %s, %s, %s)
-                """, (order_id, item['product_id'], item['quantity'], item['unit_price'], line_total))
+                """, (order_id, product_id, quantity, unit_price, line_total))
+                
                 total += line_total
+                items_procesados += 1
         
-        # Actualizar total del pedido
-        discount = data.get('discount_percentage', 0)
-        final = total * (1 - discount/100)
+        # Si no se pudo procesar ningún artículo válido, revertimos el pedido vacío
+        if items_procesados == 0:
+            cursor.execute("DELETE FROM orders WHERE id = %s", (order_id,))
+            mysql.connection.commit()
+            cursor.close()
+            return jsonify({"error": "No se enviaron productos válidos con un 'product_id' definido."}), 400
+            
+        # Calcular descuentos finales del pedido
+        discount = float(data.get('discount_percentage', 0))
+        final = total * (1 - discount / 100)
+        
         cursor.execute("""
             UPDATE orders SET total_amount=%s, discount_percentage=%s, final_amount=%s WHERE id=%s
         """, (total, discount, final, order_id))
+        
         mysql.connection.commit()
         cursor.close()
         
-        return jsonify({"id": order_id, "order_number": order_number, "message": "Pedido creado"}), 201
+        return jsonify({"id": order_id, "order_number": order_number, "message": "Pedido creado con éxito"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 @orders_bp.route('/<int:order_id>', methods=['DELETE'])
 def delete_order(order_id):
@@ -122,7 +148,7 @@ def delete_order(order_id):
     try:
         from app import mysql
         cursor = mysql.connection.cursor(pymysql.cursors.DictCursor)
-        # eliminar items primero
+        # eliminar items primero por restricciones FK
         cursor.execute("DELETE FROM order_items WHERE order_id = %s", (order_id,))
         cursor.execute("DELETE FROM orders WHERE id = %s", (order_id,))
         mysql.connection.commit()
@@ -149,19 +175,18 @@ def update_order_status(order_id):
 
 @orders_bp.route('/analytics', methods=['GET'])
 def get_orders_analytics():
-    """Obtener análisis de pedidos"""
+    """Obtener análisis de pedidos estructurado en formato clave-valor"""
     try:
         from app import mysql
-        cursor = mysql.connection.cursor()
+        cursor = mysql.connection.cursor(pymysql.cursors.DictCursor)
         
-        # Últimos 30 días
         days = request.args.get('days', 30)
         
         cursor.execute("""
             SELECT 
                 COUNT(*) as total_orders,
-                SUM(final_amount) as total_revenue,
-                AVG(final_amount) as avg_order_value,
+                COALESCE(SUM(final_amount), 0) as total_revenue,
+                COALESCE(AVG(final_amount), 0) as avg_order_value,
                 COUNT(DISTINCT client_id) as unique_customers
             FROM orders 
             WHERE order_date >= DATE_SUB(NOW(), INTERVAL %s DAY)

@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reportes - CRM TechSolutions</title>
+    <title>Reportes e Inteligencia | DecoHOME CRM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-200">
+<body class="bg-gradient-to-br from-stone-50 via-stone-100 to-orange-50/30 text-stone-800 antialiased min-h-screen">
     <div class="min-h-screen">
-        <nav class="bg-slate-950 border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+        <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-chart-pie text-white"></i>
+                        <div class="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <i class="fas fa-chair text-white"></i>
                         </div>
-                        <h1 class="text-2xl font-bold text-white">TechSolutions CRM</h1>
+                        <h1 class="text-2xl font-bold text-stone-900">Deco<span class="text-amber-700 font-light">HOME</span></h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="/" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                        <a href="/" class="text-stone-600 hover:text-amber-700 transition px-3 py-2 rounded-lg hover:bg-stone-100 font-medium text-sm">
                             <i class="fas fa-home mr-2"></i>Inicio
                         </a>
                     </div>
@@ -30,76 +30,77 @@
         </nav>
 
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="mb-8 md:flex md:items-center md:justify-between">
-        <div class="flex-1 min-w-0">
-            <h2 class="text-3xl font-bold text-white mb-2">Reportes e Inteligencia</h2>
-            <p class="text-slate-400 font-medium">Análisis profundo del rendimiento comercial y comportamiento del cliente.</p>
-        </div>
-        <div class="mt-4 flex md:ml-4 md:mt-0 gap-3">
-            <a href="/dashboard" class="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-600 transition">Regresar</a>
-            <button id="btnExportPDF" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition font-semibold shadow-lg shadow-indigo-500/20">
-                <i class="fas fa-file-pdf mr-2"></i> Imprimir
-            </button>
-        </div>
-    </div>
-
-    <div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 mb-8 shadow-xl">
-        <div class="flex flex-wrap items-end gap-4">
-            <div class="flex-1 min-w-[200px]">
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-2 ml-1">Rango de tiempo</label>
-                <select id="timeRange" class="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-4 py-2.5 focus:border-blue-500 outline-none transition">
-                    <option value="7">Últimos 7 días</option>
-                    <option value="30" selected>Últimos 30 días</option>
-                    <option value="90">Últimos 90 días</option>
-                    <option value="365">Este año</option>
-                </select>
+            <div class="mb-8 md:flex md:items-center md:justify-between">
+                <div class="flex-1 min-w-0">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-1">Reportes e Inteligencia</h2>
+                    <p class="text-stone-500 text-sm">Análisis integral del rendimiento del catálogo, facturación e histórico de clientes.</p>
+                </div>
+                <div class="mt-4 flex md:ml-4 md:mt-0 gap-3">
+                    <a href="/dashboard" class="bg-white border border-stone-200 text-stone-700 px-4 py-2.5 rounded-xl hover:bg-stone-50 shadow-sm font-semibold transition text-sm">Regresar</a>
+                    <button id="btnExportPDF" class="inline-flex items-center px-5 py-2.5 bg-amber-700 hover:bg-amber-800 text-white rounded-xl transition font-semibold shadow-sm text-sm">
+                        <i class="fas fa-file-pdf mr-2 text-xs"></i> Imprimir Reporte
+                    </button>
+                </div>
             </div>
-           
-            <button id="btnRefresh" class="bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-xl transition">
-                <i class="fas fa-sync-alt"></i>
-            </button>
-        </div>
-    </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-
-        <div class="rounded-2xl p-6 border border-slate-700 shadow-xl">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="text-lg font-bold text-white">Top Clientes</h3>
-                <span class="text-purple-400 text-xs font-bold bg-purple-400/10 px-2 py-1 rounded">LTV Unitario</span>
+            <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-sm mb-8">
+                <div class="flex items-end gap-3">
+                    <div class="flex-1 max-w-xs">
+                        <label class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1.5 ml-1">Periodo de Análisis</label>
+                        <select id="timeRange" class="w-full bg-stone-50 border border-stone-200 text-stone-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
+                            <option value="7">Últimos 7 días</option>
+                            <option value="30" selected>Últimos 30 días</option>
+                            <option value="90">Últimos 90 días</option>
+                            <option value="365">Este año fiscal</option>
+                        </select>
+                    </div>
+                   
+                    <button id="btnRefresh" class="bg-stone-100 border border-stone-200 hover:bg-stone-200 text-stone-700 p-2.5 rounded-xl transition flex items-center justify-center">
+                        <i class="fas fa-sync-alt text-sm"></i>
+                    </button>
+                </div>
             </div>
-            <div class="h-[300px]">
-                <canvas id="customersChart"></canvas>
-            </div>
-        </div>
-    </div>
 
-    <div class="bg-slate-800 rounded-2xl border border-slate-700 shadow-xl overflow-hidden">
-        <div class="p-6 border-b border-slate-700">
-            <h3 class="text-lg font-bold text-white">Análisis de Rendimiento por Producto</h3>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left">
-                <thead class="bg-slate-900/50 text-slate-400 uppercase text-[10px] font-black tracking-widest">
-                    <tr>
-                        <th class="px-6 py-4">Producto</th>
-                        <th class="px-6 py-4">Unidades Vendidas</th>
-                        <th class="px-6 py-4">Ingresos Generados</th>
-                        <th class="px-6 py-4">Margen Promedio</th>
-                        <th class="px-6 py-4">Tendencia</th>
-                    </tr>
-                </thead>
-                <tbody id="analyticsTableBody" class="divide-y divide-slate-700">
-                    <tr>
-                        <td colspan="5" class="px-6 py-10 text-center text-slate-500">
-                            <i class="fas fa-circle-notch fa-spin mr-2"></i> Procesando datos...
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</main>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                
+
+                <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-base font-bold text-stone-900">Top Clientes Premium</h3>
+                        <span class="text-amber-800 text-xs font-bold bg-amber-50 px-2.5 py-1 rounded-md border border-amber-100">LTV Acumulado</span>
+                    </div>
+                    <div class="h-[300px]">
+                        <canvas id="customersChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="p-5 border-b border-stone-100">
+                    <h3 class="text-base font-bold text-stone-900">Rendimiento Comercial por Artículo</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-stone-600">
+                        <thead class="bg-stone-50 text-stone-500 uppercase text-xs tracking-wider border-b border-stone-200">
+                            <tr>
+                                <th class="px-6 py-4 font-bold">Producto / Colección</th>
+                                <th class="px-6 py-4 font-bold">Unidades Vendidas</th>
+                                <th class="px-6 py-4 font-bold">Ingresos Generados</th>
+                                <th class="px-6 py-4 font-bold">Margen Promedio</th>
+                                <th class="px-6 py-4 font-bold">Tendencia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analyticsTableBody" class="divide-y divide-stone-100">
+                            <tr>
+                                <td colspan="5" class="px-6 py-10 text-center text-stone-400">
+                                    <i class="fas fa-circle-notch fa-spin mr-2 text-amber-700"></i> Computando inventario y balances...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
@@ -108,13 +109,13 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initReports();
-            loadCategories(); // Cargar categorías dinámicamente
+            loadCategories();
 
             document.getElementById('btnRefresh').addEventListener('click', initReports);
             document.getElementById('timeRange').addEventListener('change', initReports);
 
             document.getElementById('btnExportPDF').addEventListener('click', () => {
-                window.print(); // Solución rápida para exportar vista actual a PDF
+                window.print();
             });
         });
 
@@ -123,6 +124,7 @@
                 const res = await fetch(`${API_BASE}/analytics/categories`);
                 const categories = await res.json();
                 const categoryFilter = document.getElementById('categoryFilter');
+                if(!categoryFilter) return;
 
                 categoryFilter.innerHTML = '<option value="all">Todas las categorías</option>';
                 categories.forEach(category => {
@@ -161,22 +163,22 @@
                         datasets: [{
                             label: 'Ingresos (€)',
                             data: revenues,
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            borderWidth: 3,
+                            borderColor: '#b45309', /* Amber 700 corporativo de DecoHOME */
+                            backgroundColor: 'rgba(180, 83, 9, 0.05)',
+                            borderWidth: 2,
                             fill: true,
-                            tension: 0.4,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#3b82f6'
+                            tension: 0.35,
+                            pointRadius: 3,
+                            pointBackgroundColor: '#b45309'
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: true } },
+                        plugins: { legend: { display: false } },
                         scales: {
-                            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
-                            x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                            y: { grid: { color: '#f5f5f4' }, ticks: { color: '#78716c', font: { size: 11 } } },
+                            x: { grid: { display: false }, ticks: { color: '#78716c', font: { size: 11 } } }
                         }
                     }
                 });
@@ -204,18 +206,18 @@
                         datasets: [{
                             label: 'Valor de Vida (€)',
                             data: values,
-                            backgroundColor: '#8b5cf6',
+                            backgroundColor: '#a27b5c', /* Tono Tierra Mueble Suave */
                             borderRadius: 6,
-                            barThickness: 20
+                            barThickness: 16
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        plugins: { legend: { display: true } },
+                        plugins: { legend: { display: false } },
                         scales: {
-                            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
-                            x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                            y: { grid: { color: '#f5f5f4' }, ticks: { color: '#78716c', font: { size: 11 } } },
+                            x: { grid: { display: false }, ticks: { color: '#78716c', font: { size: 11 } } }
                         }
                     }
                 });
@@ -231,26 +233,26 @@
                 const products = await res.json();
                 
                 if (products.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center">Sin datos de productos</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-stone-400">Sin datos comerciales de artículos</td></tr>';
                     return;
                 }
 
                 tbody.innerHTML = products.slice(0, 5).map(p => `
-                    <tr class="hover:bg-slate-700/20 transition">
-                        <td class="px-6 py-4 font-bold text-white">${p.name}</td>
-                        <td class="px-6 py-4">${Math.floor(Math.random() * 100) + 10} uds</td>
-                        <td class="px-6 py-4 text-green-400 font-bold">€${(p.price * (Math.random() * 50)).toFixed(2)}</td>
-                        <td class="px-6 py-4">${(Math.random() * 30 + 10).toFixed(1)}%</td>
+                    <tr class="hover:bg-stone-50 transition">
+                        <td class="px-6 py-4 font-bold text-stone-900">${p.name}</td>
+                        <td class="px-6 py-4 text-stone-700 font-medium">${Math.floor(Math.random() * 100) + 10} uds</td>
+                        <td class="px-6 py-4 text-stone-900 font-bold">€${(p.price * (Math.random() * 50)).toFixed(2)}</td>
+                        <td class="px-6 py-4 text-stone-600">${(Math.random() * 30 + 10).toFixed(1)}%</td>
                         <td class="px-6 py-4">
-                            <span class="text-green-400"><i class="fas fa-arrow-up mr-1"></i> ${Math.floor(Math.random() * 15)}%</span>
+                            <span class="text-emerald-700 font-semibold"><i class="fas fa-arrow-up mr-1 text-xs"></i> ${Math.floor(Math.random() * 15)}%</span>
                         </td>
                     </tr>
                 `).join('');
-            } catch (e) { tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-red-400">Error cargando tabla</td></tr>'; }
+            } catch (e) { tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-rose-700 font-medium">Error al procesar el rendimiento comercial de la tabla</td></tr>'; }
         }
 
         function exportToCSV() {
-            alert('Generando archivo CSV con los datos del rango seleccionado...');
+            alert('Generando archivo CSV con las métricas de DecoHOME seleccionadas...');
         }
     </script>
 </body>

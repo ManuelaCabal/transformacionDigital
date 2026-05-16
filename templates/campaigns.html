@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campañas - CRM TechSolutions</title>
+    <title>Campañas | DecoHOME CRM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+<body class="bg-gradient-to-br from-stone-50 via-stone-100 to-orange-50/30 text-stone-800 antialiased min-h-screen">
     <div class="min-h-screen">
-        <!-- Navigation -->
-        <nav class="bg-slate-950 border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+        <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-chart-line text-white"></i>
+                        <div class="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <i class="fas fa-chair text-white"></i>
                         </div>
-                        <h1 class="text-2xl font-bold text-white">TechSolutions CRM</h1>
+                        <h1 class="text-2xl font-bold text-stone-900">Deco<span class="text-amber-700 font-light">HOME</span></h1>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <a href="/" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                        <a href="/" class="text-stone-600 hover:text-amber-700 transition px-3 py-2 rounded-lg hover:bg-stone-100 font-medium text-sm">
                             <i class="fas fa-home mr-2"></i>Inicio
                         </a>
                     </div>
@@ -33,30 +32,35 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="mb-8 flex items-center justify-between">
                 <div>
-                    <h2 class="text-3xl font-bold text-white mb-2">Campañas de Marketing</h2>
-                    <p class="text-slate-400">Crea y analiza campañas para TechSolutions</p>
+                    <h2 class="text-3xl font-bold text-stone-900 mb-1">Campañas de Marketing</h2>
+                    <p class="text-stone-500 text-sm">Planifica y analiza el alcance de tus colecciones, showrooms y eventos exclusivos</p>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="/dashboard" class="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-600 transition">Regresar</a>
-                    <button id="btnNewCampaign" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition">
-                        <i class="fas fa-plus mr-2"></i>Nueva Campaña
+                <div class="flex items-center gap-3">
+                    <a href="/dashboard" class="bg-white border border-stone-200 text-stone-700 px-4 py-2.5 rounded-xl hover:bg-stone-50 shadow-sm font-semibold transition text-sm">Regresar</a>
+                    <button id="btnNewCampaign" class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition text-sm flex items-center">
+                        <i class="fas fa-plus mr-2 text-xs"></i>Nueva Campaña
                     </button>
                 </div>
             </div>
 
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 mb-8">
-                <div class="flex gap-4">
-                    <input id="searchCampaign" type="text" placeholder="Buscar campaña..." class="flex-1 bg-slate-700 border border-slate-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
-                    <select id="typeFilter" class="bg-slate-700 border border-slate-600 text-white rounded-lg px-4 py-2">
-                        <option value="">Todos los tipos</option>
+            <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-sm mb-8">
+                <div class="flex flex-wrap md:flex-nowrap gap-4">
+                    <div class="flex-1 relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-stone-400">
+                            <i class="fas fa-search text-sm"></i>
+                        </span>
+                        <input id="searchCampaign" type="text" placeholder="Buscar campaña o evento..." class="w-full bg-stone-50 border border-stone-200 text-stone-900 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
+                    </div>
+                    <select id="typeFilter" class="bg-stone-50 border border-stone-200 text-stone-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition min-w-[180px]">
+                        <option value="">Todos los canales</option>
                     </select>
                 </div>
             </div>
 
             <div id="campaignsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="col-span-full text-center text-slate-400 py-8">
-                    <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
-                    <p>Cargando campañas...</p>
+                <div class="col-span-full text-center text-stone-400 py-12">
+                    <i class="fas fa-spinner fa-spin text-2xl mb-3 text-amber-600"></i>
+                    <p class="text-sm font-medium">Sincronizando métricas y campañas...</p>
                 </div>
             </div>
         </main>
@@ -92,21 +96,158 @@
                 const res = await fetch(`${API_BASE}/campaigns/?`+params.toString());
                 const data = await res.json();
                 renderCampaigns(data || []);
-            }catch(e){ console.error(e); document.getElementById('campaignsList').innerHTML = '<div class="col-span-full text-center text-red-400 py-8">Error al cargar campañas</div>' }
+            }catch(e){ console.error(e); document.getElementById('campaignsList').innerHTML = '<div class="col-span-full text-center text-red-600 font-medium py-12">❌ Error al cargar campañas</div>' }
         }
 
         function renderCampaigns(campaigns){
             const wrap = document.getElementById('campaignsList');
-            if(!campaigns || campaigns.length===0){ wrap.innerHTML = '<div class="col-span-full text-center text-slate-400 py-8">No hay campañas</div>'; return }
+            if(!campaigns || campaigns.length===0){ wrap.innerHTML = '<div class="col-span-full text-center text-stone-400 py-12 text-sm font-medium">No se han encontrado campañas programadas</div>'; return }
             wrap.innerHTML = campaigns.map(c=>`
-                <div class="bg-slate-800 rounded-xl border border-slate-700 p-6">
-                    <h3 class="text-xl text-white font-bold mb-2">${c.name}</h3>
-                    <p class="text-slate-400 text-sm mb-3">${c.description || ''}</p>
-                    <div class="flex items-center justify-between">
-                        <div class="text-slate-400 text-sm">Tipo: ${c.campaign_type || '—'}</div>
+                <div class="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm hover:border-amber-600/40 hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center text-amber-700 mb-4 group-hover:bg-amber-700 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-bullhorn text-xs"></i>
+                        </div>
+                        <h3 class="text-lg text-stone-900 font-bold mb-1 group-hover:text-amber-800 transition-colors">${c.name}</h3>
+                        <p class="text-stone-500 text-xs mb-6 leading-relaxed line-clamp-3">${c.description || 'Sin descripción o briefing asociado.'}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-stone-100 mt-auto">
+                        <div class="text-stone-400 font-medium text-[11px] uppercase tracking-wider">
+                            <span class="bg-stone-50 px-2.5 py-1 rounded-md border border-stone-200">${c.campaign_type || 'General'}</span>
+                        </div>
                         <div class="flex gap-2">
-                            <button onclick="viewCampaign(${c.id})" class="bg-blue-600 text-white px-3 py-1 rounded">Ver</button>
-                            <button onclick="editCampaign(${c.id})" class="bg-purple-600 text-white px-3 py-1 rounded">Editar</button>
+                            <button onclick="viewCampaign(${c.id})" class="bg-stone-100 hover:bg-stone-200 text-stone-700 px-3.5 py-1.5 rounded-xl font-bold text-xs transition">Métricas</button>
+                            <button onclick="editCampaign(${c.id})" class="bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs shadow-sm transition">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function viewCampaign(id){ alert('Ver campaña '+id) }
+        function editCampaign(id){ alert('Editar campaña '+id) }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campañas | DecoHOME CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-stone-50 via-stone-100 to-orange-50/30 text-stone-800 antialiased min-h-screen">
+    <div class="min-h-screen">
+        <nav class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-amber-700 to-amber-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <i class="fas fa-chair text-white"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-stone-900">Deco<span class="text-amber-700 font-light">HOME</span></h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="/" class="text-stone-600 hover:text-amber-700 transition px-3 py-2 rounded-lg hover:bg-stone-100 font-medium text-sm">
+                            <i class="fas fa-home mr-2"></i>Inicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-8 flex items-center justify-between">
+                <div>
+                    <h2 class="text-3xl font-bold text-stone-900 mb-1">Campañas de Marketing</h2>
+                    <p class="text-stone-500 text-sm">Planifica y analiza el alcance de tus colecciones, showrooms y eventos exclusivos</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="/dashboard" class="bg-white border border-stone-200 text-stone-700 px-4 py-2.5 rounded-xl hover:bg-stone-50 shadow-sm font-semibold transition text-sm">Regresar</a>
+                    <button id="btnNewCampaign" class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition text-sm flex items-center">
+                        <i class="fas fa-plus mr-2 text-xs"></i>Nueva Campaña
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-5 border border-stone-200 shadow-sm mb-8">
+                <div class="flex flex-wrap md:flex-nowrap gap-4">
+                    <div class="flex-1 relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-stone-400">
+                            <i class="fas fa-search text-sm"></i>
+                        </span>
+                        <input id="searchCampaign" type="text" placeholder="Buscar campaña o evento..." class="w-full bg-stone-50 border border-stone-200 text-stone-900 rounded-xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition">
+                    </div>
+                    <select id="typeFilter" class="bg-stone-50 border border-stone-200 text-stone-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600 focus:bg-white transition min-w-[180px]">
+                        <option value="">Todos los canales</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="campaignsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="col-span-full text-center text-stone-400 py-12">
+                    <i class="fas fa-spinner fa-spin text-2xl mb-3 text-amber-600"></i>
+                    <p class="text-sm font-medium">Sincronizando métricas y campañas...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCampaignTypes();
+            loadCampaigns();
+            document.getElementById('btnNewCampaign').addEventListener('click', () => alert('Crear campaña (próximamente)'));
+            document.getElementById('searchCampaign').addEventListener('input', loadCampaigns);
+            document.getElementById('typeFilter').addEventListener('change', loadCampaigns);
+        });
+
+        async function loadCampaignTypes() {
+            try {
+                const res = await fetch(`${API_BASE}/campaigns/types`);
+                const types = await res.json();
+                const sel = document.getElementById('typeFilter');
+                types.forEach(t=>{
+                    const o = document.createElement('option'); o.value = t.value; o.textContent = t.label; sel.appendChild(o);
+                });
+            } catch(e){ console.error(e); }
+        }
+
+        async function loadCampaigns() {
+            try{
+                const q = document.getElementById('searchCampaign').value;
+                const type = document.getElementById('typeFilter').value;
+                const params = new URLSearchParams(); if(q) params.append('search', q); if(type) params.append('type', type);
+                const res = await fetch(`${API_BASE}/campaigns/?`+params.toString());
+                const data = await res.json();
+                renderCampaigns(data || []);
+            }catch(e){ console.error(e); document.getElementById('campaignsList').innerHTML = '<div class="col-span-full text-center text-red-600 font-medium py-12">❌ Error al cargar campañas</div>' }
+        }
+
+        function renderCampaigns(campaigns){
+            const wrap = document.getElementById('campaignsList');
+            if(!campaigns || campaigns.length===0){ wrap.innerHTML = '<div class="col-span-full text-center text-stone-400 py-12 text-sm font-medium">No se han encontrado campañas programadas</div>'; return }
+            wrap.innerHTML = campaigns.map(c=>`
+                <div class="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm hover:border-amber-600/40 hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 bg-amber-50 rounded-lg flex items-center justify-center text-amber-700 mb-4 group-hover:bg-amber-700 group-hover:text-white transition-colors duration-300">
+                            <i class="fas fa-bullhorn text-xs"></i>
+                        </div>
+                        <h3 class="text-lg text-stone-900 font-bold mb-1 group-hover:text-amber-800 transition-colors">${c.name}</h3>
+                        <p class="text-stone-500 text-xs mb-6 leading-relaxed line-clamp-3">${c.description || 'Sin descripción o briefing asociado.'}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-stone-100 mt-auto">
+                        <div class="text-stone-400 font-medium text-[11px] uppercase tracking-wider">
+                            <span class="bg-stone-50 px-2.5 py-1 rounded-md border border-stone-200">${c.campaign_type || 'General'}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="viewCampaign(${c.id})" class="bg-stone-100 hover:bg-stone-200 text-stone-700 px-3.5 py-1.5 rounded-xl font-bold text-xs transition">Métricas</button>
+                            <button onclick="editCampaign(${c.id})" class="bg-amber-700 hover:bg-amber-800 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs shadow-sm transition">Editar</button>
                         </div>
                     </div>
                 </div>
