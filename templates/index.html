@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSolutions | Agente Digitalizador CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary shadow-sm">
+    <div class="container d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">🚀 TechSolutions CRM</span>
+        <span class="text-white small">Bienvenida, <strong>Manuela (Admin)</strong></span>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold mb-3">Añadir Nuevo Lead</h5>
+                    <form id="clientForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nombre de empresa" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email de contacto" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Teléfono" id="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-muted">Valor Estimado (€)</label>
+                            <input type="number" class="form-control" id="value" value="0">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Registrar en Pipeline</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold text-secondary">Pipeline de Ventas</h4>
+                <span class="badge bg-info text-dark" id="clientCount">0 Clientes</span>
+            </div>
+            
+            <div id="clientList" class="row">
+                </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

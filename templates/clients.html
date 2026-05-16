@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - CRM TechSolutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div class="min-h-screen">
+        <nav class="bg-slate-950 border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-briefcase text-white"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-white">TechSolutions CRM</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="/" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-home mr-2"></i>Inicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-8 flex items-center justify-between">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Gestión de Clientes</h2>
+                    <p class="text-slate-400">Administra tu cartera de clientes y prospectos</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="/dashboard" class="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-600 transition">Regresar</a>
+                    <button id="btnNewClient" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                        <i class="fas fa-plus mr-2"></i>Nuevo Cliente
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 mb-8">
+                <div class="flex flex-wrap gap-4">
+                    <input type="text" id="searchClient" placeholder="Buscar por nombre o empresa..." 
+                           class="flex-1 min-w-[250px] bg-slate-700 border border-slate-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
+                    <select id="statusFilter" class="bg-slate-700 border border-slate-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
+                        <option value="">Todos los estados</option>
+                        <option value="prospect">Prospect</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                        <option value="cliente_perdido">Perdido</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-slate-300">
+                        <thead class="bg-slate-900 border-b border-slate-700">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Cliente / Empresa</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Contacto</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Estado</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Industria</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Valor (CLV)</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientsTableBody">
+                            <tr><td colspan="6" class="px-6 py-8 text-center text-slate-400">Cargando clientes...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="clientModal" class="fixed inset-0 bg-black/70 flex items-center justify-center hidden z-[100]">
+        <div class="bg-slate-900 rounded-xl w-full max-w-2xl p-8 border border-slate-700 shadow-2xl">
+            <div class="flex items-center justify-between mb-6">
+                <h3 id="clientModalTitle" class="text-xl font-bold text-white">Nuevo Cliente</h3>
+                <button id="clientModalClose" class="text-slate-400 hover:text-white text-2xl">✕</button>
+            </div>
+            <form id="clientForm" class="space-y-4">
+                <input type="hidden" id="clientId">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">Nombre Completo</label>
+                        <input id="clientName" required class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">Email</label>
+                        <input id="clientEmail" type="email" required class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">Teléfono</label>
+                        <input id="clientPhone" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">Empresa</label>
+                        <input id="clientCompany" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">Industria</label>
+                        <input id="clientIndustry" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none" />
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">Dirección</label>
+                        <input id="clientAddress" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">Estado</label>
+                        <select id="clientStatus" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none">
+                            <option value="prospect">Prospect</option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                            <option value="cliente_perdido">Perdido</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1">País</label>
+                        <input id="clientCountry" value="España" class="w-full bg-slate-800 border border-slate-700 p-2.5 rounded text-white focus:border-blue-500 outline-none" />
+                    </div>
+                </div>
+                <div class="flex justify-end pt-4">
+                    <button type="submit" id="clientSubmit" class="bg-blue-600 hover:bg-blue-700 px-8 py-2.5 rounded-lg text-white font-bold transition">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadClients();
+            document.getElementById('searchClient').addEventListener('input', filterClients);
+            document.getElementById('statusFilter').addEventListener('change', filterClients);
+            document.getElementById('btnNewClient').addEventListener('click', () => openClientForm('create'));
+            document.getElementById('clientModalClose').addEventListener('click', () => document.getElementById('clientModal').classList.add('hidden'));
+        });
+
+        async function loadClients() {
+            try {
+                const response = await fetch(`${API_BASE}/clients/`);
+                const data = await response.json();
+                displayClients(data.clients || []);
+            } catch (error) {
+                showError('Error de conexión con el servidor');
+            }
+        }
+
+        function displayClients(clients) {
+            const tbody = document.getElementById('clientsTableBody');
+            if (clients.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-6 py-8 text-center text-slate-400">No hay clientes registrados</td></tr>';
+                return;
+            }
+            tbody.innerHTML = clients.map(c => `
+                <tr class="border-b border-slate-700 hover:bg-slate-700/50 transition">
+                    <td class="px-6 py-4">
+                        <div class="font-bold text-white">${c.name}</div>
+                        <div class="text-xs text-slate-500">${c.company || 'Sin empresa'}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex flex-col">
+                            <span><i class="fas fa-envelope mr-2 text-xs"></i>${c.email}</span>
+                            <span class="text-xs text-slate-500"><i class="fas fa-phone mr-2"></i>${c.phone || '-'}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 rounded text-xs font-bold uppercase ${getStatusClass(c.status)}">${c.status}</span>
+                    </td>
+                    <td class="px-6 py-4">${c.industry || '-'}</td>
+                    <td class="px-6 py-4 font-mono text-green-400">€${(c.customer_lifetime_value || 0).toLocaleString()}</td>
+                    <td class="px-6 py-4">
+                        <button onclick="openClientForm('edit', ${c.id})" class="text-blue-400 hover:text-blue-200 mr-3"><i class="fas fa-edit"></i></button>
+                        <button onclick="deleteClient(${c.id})" class="text-red-400 hover:text-red-200"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getStatusClass(status) {
+            const map = {
+                'activo': 'bg-green-500/20 text-green-400',
+                'prospect': 'bg-blue-500/20 text-blue-400',
+                'inactivo': 'bg-yellow-500/20 text-yellow-400',
+                'cliente_perdido': 'bg-red-500/20 text-red-400'
+            };
+            return map[status] || 'bg-slate-500/20 text-slate-400';
+        }
+
+        function filterClients() {
+            const search = document.getElementById('searchClient').value.toLowerCase();
+            const status = document.getElementById('statusFilter').value.toLowerCase();
+            const rows = document.querySelectorAll('#clientsTableBody tr');
+            
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                const matchesSearch = text.includes(search);
+                const matchesStatus = !status || text.includes(status);
+                row.style.display = matchesSearch && matchesStatus ? '' : 'none';
+            });
+        }
+
+        function openClientForm(mode, id = null) {
+            const modal = document.getElementById('clientModal');
+            const submitBtn = document.getElementById('clientSubmit');
+            document.getElementById('clientForm').reset();
+            
+            if (mode === 'create') {
+                document.getElementById('clientModalTitle').textContent = 'Nuevo Cliente';
+                submitBtn.textContent = 'Crear';
+                submitBtn.dataset.mode = 'create';
+                modal.classList.remove('hidden');
+            } else {
+                fetch(`${API_BASE}/clients/${id}`).then(r => r.json()).then(data => {
+                    const c = data.client;
+                    document.getElementById('clientId').value = c.id;
+                    document.getElementById('clientName').value = c.name;
+                    document.getElementById('clientEmail').value = c.email;
+                    document.getElementById('clientPhone').value = c.phone || '';
+                    document.getElementById('clientCompany').value = c.company || '';
+                    document.getElementById('clientIndustry').value = c.industry || '';
+                    document.getElementById('clientAddress').value = c.address || '';
+                    document.getElementById('clientStatus').value = c.status;
+                    
+                    document.getElementById('clientModalTitle').textContent = 'Editar Cliente';
+                    submitBtn.textContent = 'Guardar Cambios';
+                    submitBtn.dataset.mode = 'edit';
+                    modal.classList.remove('hidden');
+                });
+            }
+        }
+
+        document.getElementById('clientForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const mode = document.getElementById('clientSubmit').dataset.mode;
+            const id = document.getElementById('clientId').value;
+            const payload = {
+                name: document.getElementById('clientName').value,
+                email: document.getElementById('clientEmail').value,
+                phone: document.getElementById('clientPhone').value,
+                company: document.getElementById('clientCompany').value,
+                industry: document.getElementById('clientIndustry').value,
+                address: document.getElementById('clientAddress').value,
+                status: document.getElementById('clientStatus').value
+            };
+
+            const url = mode === 'create' ? `${API_BASE}/clients/` : `${API_BASE}/clients/${id}`;
+            const method = mode === 'create' ? 'POST' : 'PUT';
+
+            try {
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    document.getElementById('clientModal').classList.add('hidden');
+                    loadClients();
+                }
+            } catch (err) { alert("Error al procesar"); }
+        };
+
+        function deleteClient(id) {
+            if (confirm('¿Eliminar este cliente permanentemente?')) {
+                fetch(`${API_BASE}/clients/${id}`, { method: 'DELETE' })
+                    .then(() => loadClients());
+            }
+        }
+
+        function showError(msg) {
+            document.getElementById('clientsTableBody').innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-red-400">${msg}</td></tr>`;
+        }
+    </script>
+</body>
+</html>

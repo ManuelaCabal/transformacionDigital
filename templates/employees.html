@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleados - CRM TechSolutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-slate-950 border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-users text-white"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold text-white">TechSolutions CRM</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="/" class="text-slate-300 hover:text-white transition px-3 py-2 rounded-lg hover:bg-slate-800">
+                            <i class="fas fa-home mr-2"></i>Inicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-8 flex items-center justify-between">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Equipo - Empleados</h2>
+                    <p class="text-slate-400">Gestiona los empleados y sus posiciones</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="/dashboard" class="bg-slate-700 text-white px-4 py-2 rounded-lg hover:bg-slate-600 transition">Regresar</a>
+                    <button id="btnNewEmployee" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">
+                        <i class="fas fa-plus mr-2"></i>Nuevo Empleado
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 mb-8">
+                <div class="flex gap-4">
+                    <input type="text" id="searchEmployee" placeholder="Buscar empleado..." 
+                           class="flex-1 bg-slate-700 border border-slate-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
+                    <select id="departmentFilter" class="bg-slate-700 border border-slate-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500">
+                        <option value="">Todos los departamentos</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-slate-300">
+                        <thead class="bg-slate-900 border-b border-slate-700">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Nombre</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Posición</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Departamento</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Email</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Teléfono</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Contratación</th>
+                                <th class="px-6 py-3 text-left text-white font-semibold">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeesTableBody">
+                            <tr><td colspan="7" class="px-6 py-8 text-center text-slate-400">Cargando empleados...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+        document.addEventListener('DOMContentLoaded', ()=>{
+            loadEmployees();
+            document.getElementById('searchEmployee').addEventListener('input', filterEmployees);
+            document.getElementById('btnNewEmployee').addEventListener('click', ()=> openEmployeeForm('create'));
+        });
+
+        async function loadEmployees(){
+            try{
+                const res = await fetch(`${API_BASE}/employees/`);
+                const data = await res.json();
+                const list = data.employees || [];
+                if(list.length===0) document.getElementById('employeesTableBody').innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-slate-400">No hay empleados</td></tr>';
+                else displayEmployees(list);
+            }catch(e){ console.error(e); document.getElementById('employeesTableBody').innerHTML = `<tr><td colspan="7" class="px-6 py-8 text-center text-red-400">${e.message}</td></tr>` }
+        }
+
+        function displayEmployees(list){
+            const tbody = document.getElementById('employeesTableBody');
+            tbody.innerHTML = list.map(emp=>`
+                <tr class="border-b border-slate-700 hover:bg-slate-700/50">
+                    <td class="px-6 py-4">${emp.first_name} ${emp.last_name}</td>
+                    <td class="px-6 py-4">${emp.position||'-'}</td>
+                    <td class="px-6 py-4">${emp.department||'-'}</td>
+                    <td class="px-6 py-4">${emp.email||'-'}</td>
+                    <td class="px-6 py-4">${emp.phone||'-'}</td>
+                    <td class="px-6 py-4">${emp.hire_date || '-'}</td>
+                    <td class="px-6 py-4">
+                        <button onclick="openEmployeeForm('edit', ${emp.id})" class="text-blue-400 hover:text-blue-300 mr-2"><i class="fas fa-edit"></i></button>
+                        <button onclick="deleteEmployee(${emp.id})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterEmployees(){
+            const q = document.getElementById('searchEmployee').value.toLowerCase();
+            document.querySelectorAll('#employeesTableBody tr').forEach(row=>{
+                const name = row.cells[0].textContent.toLowerCase();
+                row.style.display = name.includes(q) ? '' : 'none';
+            });
+        }
+
+        // Modal form
+        function openEmployeeForm(mode, id=null){
+            const modalId = 'employeeModal';
+            let modal = document.getElementById(modalId);
+            if(!modal){
+                createEmployeeModal();
+                modal = document.getElementById(modalId);
+            }
+            const title = document.getElementById('employeeModalTitle');
+            const submit = document.getElementById('employeeSubmit');
+            document.getElementById('employeeForm').reset();
+            document.getElementById('employeeId').value = '';
+            if(mode==='create'){
+                title.textContent='Nuevo Empleado'; submit.textContent='Crear'; submit.dataset.mode='create'; modal.classList.remove('hidden');
+            } else {
+                title.textContent='Editar Empleado'; submit.textContent='Guardar'; submit.dataset.mode='edit';
+                fetch(`${API_BASE}/employees/${id}`).then(r=>r.json()).then(d=>{
+                    if(d.error) return alert(d.error);
+                    const e = d.employee || {};
+                    document.getElementById('employeeId').value = e.id||'';
+                    document.getElementById('firstName').value = e.first_name||'';
+                    document.getElementById('lastName').value = e.last_name||'';
+                    document.getElementById('position').value = e.position||'';
+                    document.getElementById('department').value = e.department||'';
+                    document.getElementById('employeeEmail').value = e.email||'';
+                    document.getElementById('employeePhone').value = e.phone||'';
+                    document.getElementById('hireDate').value = e.hire_date||'';
+                    modal.classList.remove('hidden');
+                }).catch(err=>alert(err.message));
+            }
+        }
+
+        function createEmployeeModal(){
+            const html = `
+            <div id="employeeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="bg-slate-900 rounded-lg w-full max-w-2xl p-6 border border-slate-700">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 id="employeeModalTitle" class="text-lg font-semibold text-white">Nuevo Empleado</h3>
+                        <button id="employeeModalClose" class="text-slate-400 hover:text-white">Cerrar ✕</button>
+                    </div>
+                    <form id="employeeForm" class="space-y-3">
+                        <input type="hidden" id="employeeId">
+                        <div class="grid grid-cols-2 gap-3">
+                            <input id="firstName" required placeholder="Nombre" class="bg-slate-700 p-2 rounded text-white" />
+                            <input id="lastName" required placeholder="Apellido" class="bg-slate-700 p-2 rounded text-white" />
+                            <input id="position" placeholder="Posición" class="bg-slate-700 p-2 rounded text-white" />
+                            <input id="department" placeholder="Departamento" class="bg-slate-700 p-2 rounded text-white" />
+                            <input id="employeeEmail" type="email" placeholder="Email" class="bg-slate-700 p-2 rounded text-white" />
+                            <input id="employeePhone" placeholder="Teléfono" class="bg-slate-700 p-2 rounded text-white" />
+                            <input id="hireDate" type="date" placeholder="Fecha de contratación" class="bg-slate-700 p-2 rounded text-white" />
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" id="employeeSubmit" data-mode="create" class="bg-indigo-600 px-4 py-2 rounded text-white">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', html);
+            document.getElementById('employeeModalClose').addEventListener('click', ()=> document.getElementById('employeeModal').classList.add('hidden'));
+            document.getElementById('employeeForm').addEventListener('submit', employeeFormSubmit);
+        }
+
+        function employeeFormSubmit(e){
+            e.preventDefault();
+            const id = document.getElementById('employeeId').value;
+            const payload = {
+                first_name: document.getElementById('firstName').value,
+                last_name: document.getElementById('lastName').value,
+                position: document.getElementById('position').value,
+                department: document.getElementById('department').value,
+                email: document.getElementById('employeeEmail').value,
+                phone: document.getElementById('employeePhone').value,
+                hire_date: document.getElementById('hireDate').value
+            };
+            const mode = document.getElementById('employeeSubmit').dataset.mode || 'create';
+            if(mode==='create'){
+                fetch(`${API_BASE}/employees/`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)})
+                    .then(r=>r.json()).then(res=>{ if(res.error) return alert(res.error); loadEmployees(); document.getElementById('employeeModal').classList.add('hidden'); })
+                    .catch(err=>alert(err.message));
+            } else {
+                fetch(`${API_BASE}/employees/${id}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)})
+                    .then(r=>r.json()).then(res=>{ if(res.error) return alert(res.error); loadEmployees(); document.getElementById('employeeModal').classList.add('hidden'); })
+                    .catch(err=>alert(err.message));
+            }
+        }
+
+        function deleteEmployee(id){ if(confirm('¿Eliminar empleado?')){ fetch(`${API_BASE}/employees/${id}`, { method:'DELETE' }).then(r=>r.json()).then(res=>{ if(res.error) return alert(res.error); loadEmployees(); }).catch(err=>alert(err.message)); } }
+    </script>
+</body>
+</html>
