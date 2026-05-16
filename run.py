@@ -1,8 +1,4 @@
 #!/usr/bin/env python
-"""
-Script para ejecutar CRM TechSolutions con opciones de puerto y configuración
-Uso: python run.py [--port 5000] [--host 0.0.0.0]
-"""
 
 import sys
 import argparse
